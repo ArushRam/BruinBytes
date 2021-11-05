@@ -1,0 +1,7 @@
+.menubar {
+  display: flex;
+  flex-direction: row;
+  background-color: blue;
+  color: white;
+  align-items: center;
+}
