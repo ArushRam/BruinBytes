@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import './DiningHallContainer.css';
+import DiningHall from './DiningHall.js';
 
 function DiningHallContainer(props) {
   return (
     <div className="container">
-      <h2>Dining Hall 1</h2>
-      <h2>Dining Hall 2</h2>
+      <DiningHall
+        name="De Neve"
+        capacity={2}
+      />
     </div>
   );
 }

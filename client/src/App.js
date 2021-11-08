@@ -1,7 +1,10 @@
 import './App.css';
 import React, {useState} from 'react';
 import MenuBar from './components/MenuBar.js'; 
-import DiningHallContainer from './components/DiningHallContainer';
+import DiningHallContainer from './components/DiningHallContainer.js';
+
+
+
 
 function App() {
   return (
