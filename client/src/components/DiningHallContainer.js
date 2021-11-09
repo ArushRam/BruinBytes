@@ -1,9 +1,21 @@
 import React, {useState} from 'react';
 import './DiningHallContainer.css';
-import DiningHall from './DiningHall.js';
 
 import DeNeve from '../images/De-Neve-Plaza.jpg';
 import BPlate from '../images/BPlate.jpg';
+
+
+function DiningHall(props) {
+  return (
+    <div className="dininghall">
+      <img src={props.image} alt={props.name}/>
+      <h1>{props.name}</h1>
+      <h3>Capacity: {props.capacity}/3</h3>
+      <button>View Menu</button>
+    </div>
+  );
+}
+
 
 function DiningHallContainer(props) {
   const diningHallInfo = 
