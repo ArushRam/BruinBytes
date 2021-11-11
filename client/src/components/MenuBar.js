@@ -8,7 +8,7 @@ function MenuBar(props) {
       <h2>Menu Bar</h2>
       <nav>
         <ul>
-          <Link to="/">Home</Link> |{" "}
+          <Link to="/home">Home</Link> |{" "}
           <Link to="/login">Login</Link>
         </ul>
       </nav>
