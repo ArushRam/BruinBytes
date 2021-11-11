@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
+import MenuBar  from './MenuBar';
 
 function LoginPage() {
   return (
-    <div>hi</div>
+    <div className="loginpage">
+      <MenuBar />
+      <h1>hi</h1>
+    </div>
   );
 }
 
