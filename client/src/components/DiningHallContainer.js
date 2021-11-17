@@ -4,6 +4,7 @@ import './DiningHallContainer.css';
 
 import DeNeve from '../images/De-Neve-Plaza.jpg';
 import BPlate from '../images/BPlate.jpg';
+import Epi from '../images/Epi.jpg';
 
 
 function DiningHall(props) {
@@ -32,6 +33,11 @@ function DiningHallContainer(props) {
       name: "BPlate",
       capacity: "1",
       image: BPlate
+    },
+    {
+      name: "Epicuria",
+      capacity: "3",
+      image: Epi
     }
   ]
 
