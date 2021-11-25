@@ -5,7 +5,7 @@ import './DiningHallContainer.css';
 import DeNeve from '../images/De-Neve-Plaza.jpg';
 import BPlate from '../images/BPlate.jpg';
 import Epi from '../images/Epi.jpg';
-import BCafe from '../images/BCaf.jpg'
+import BCafe from '../images/BCafe.jpg'
 import Study from '../images/Study.jpg'
 
 
@@ -54,7 +54,7 @@ function DiningHallContainer(props) {
       capacity: 4,
       rating: 3,
       image: BCafe,
-    }
+    },
     {
       name: "The Study",
       capacity: 6,
