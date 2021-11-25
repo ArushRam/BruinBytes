@@ -9,7 +9,8 @@ function MenuBar(props) {
       <nav>
         <ul>
           <Link to="/home">Home</Link> |{" "}
-          <Link to="/login">Login</Link>
+          <Link to="/login">Login</Link>|{" "}
+          <Link to="/review">Write a Review</Link>
         </ul>
       </nav>
     </div>

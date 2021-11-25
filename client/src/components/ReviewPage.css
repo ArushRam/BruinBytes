@@ -1,0 +1,16 @@
+.reviewpage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewbox {
+  width: 500px;
+  height: 100px;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

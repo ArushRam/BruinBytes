@@ -7,6 +7,7 @@ import LoginPage from './components/LoginPage'
 import DiningHallContainer from './components/DiningHallContainer';
 import reportWebVitals from './reportWebVitals';
 import DiningHallInfo from './components/DiningHallInfo';
+import ReviewPage from './components/ReviewPage';
 
 
 ReactDOM.render(
@@ -16,9 +17,10 @@ ReactDOM.render(
         <Route path='/' element={<App />}>
           <Route path='/home' element={<DiningHallContainer />} />
           <Route path='login' element={<LoginPage />} />
+          <Route path='review' element={<ReviewPage />} /> { /*only if user is logged in (fix later) */}
           <Route path=':dininghall' element={<DiningHallInfo />} />
           <Route index element={<DiningHallContainer />}/>
-          <Route
+          <Route /* for undefined routes */
             path="*"
             element={
             <main style={{ padding: "1rem" }}>
