@@ -5,7 +5,8 @@ import './DiningHallContainer.css';
 import DeNeve from '../images/De-Neve-Plaza.jpg';
 import BPlate from '../images/BPlate.jpg';
 import Epi from '../images/Epi.jpg';
-
+import RendeWest from '../images/RendeWest.jpg'
+import RendeEast from '../images/RendeEast.jpg'
 
 function DiningHall(props) {
   //  function that returns a generic dining hall using info from props
@@ -46,7 +47,19 @@ function DiningHallContainer(props) {
       capacity: 3,
       rating: 4.5,
       image: Epi
-    }
+    },
+    {
+      name: "Rendezvous West",
+      capacity: 1,
+      rating: 3.5,
+      image: RendeWest
+    },
+    {
+      name: "Rendezvous East",
+      capacity: 2,
+      rating: 2.9,
+      image: RendeEast
+    },
   ]
 
   // mapping function: maps array of dining hall info to dining hall component
