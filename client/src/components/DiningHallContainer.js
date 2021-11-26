@@ -18,7 +18,7 @@ function DiningHall(props) {
   //  function that returns a generic dining hall using info from props
   return (
     <div className="dininghall" onClick={() => console.log("Click!")}>
-      <Link to={"/"+props.name}>
+      <Link to={"/dininghall/"+props.name}>
       <img src={props.image} alt={props.name}/>
       <h1>{props.name}</h1>
       <h3>Capacity: {props.capacity}/3</h3>

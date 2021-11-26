@@ -16,9 +16,9 @@ ReactDOM.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route path='/home' element={<DiningHallContainer />} />
-          <Route path='login' element={<LoginPage />} />
-          <Route path='review' element={<ReviewPage />} /> { /*only if user is logged in (fix later) */}
-          <Route path=':dininghall' element={<DiningHallInfo />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/review' element={<ReviewPage />} /> { /*only if user is logged in (fix later) */}
+          <Route path='/dininghall/:dininghall' element={<DiningHallInfo />} />
           <Route index element={<DiningHallContainer />}/>
           <Route /* for undefined routes */
             path="*"
