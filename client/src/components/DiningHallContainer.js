@@ -55,15 +55,14 @@ function DiningHallContainer(props) {
       image: Epi
     },
     {
-
       name: "Bruin Cafe",
-      capacity: 4,
+      capacity: 2,
       rating: 3,
       image: BCafe,
     },
     {
       name: "The Study",
-      capacity: 6,
+      capacity: 3,
       rating: 4,
       image: Study
     },
