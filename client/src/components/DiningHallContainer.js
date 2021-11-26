@@ -66,8 +66,8 @@ function DiningHallContainer(props) {
       capacity: 6,
       rating: 4,
       image: Study
-    }
-
+    },
+    {
       name: "Rendezvous West",
       capacity: 1,
       rating: 3.5,
