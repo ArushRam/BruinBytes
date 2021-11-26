@@ -1,3 +1,9 @@
-.loginpage {
-  color: red;
+.loginpage {}
+
+.loginButton {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+  padding: 5px 12px;
+  margin-top: 10px
 }
