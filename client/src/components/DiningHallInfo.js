@@ -17,7 +17,7 @@ function MenuItem(props) {
         {dishName}
       </h2>
       {showingPopUp && (
-        <div class="ItemDescription" >
+        <div className  ="ItemDescription" >
           <h3>"<i>{desc}</i>"</h3>
           <h3>Rating: {rating}/5</h3>
         </div>
