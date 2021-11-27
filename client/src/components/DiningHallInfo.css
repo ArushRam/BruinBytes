@@ -1,0 +1,13 @@
+.MenuItem {
+    list-style-type: none;
+}
+
+.ItemDescription {
+    z-index: 10;
+    position: relative;
+    display: inline-block;
+    border-color: white;
+    background-color: blue;
+    padding: 15px;
+    color: white;
+}
