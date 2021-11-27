@@ -1,18 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './DiningHallContainer.css';
 
 import DeNeve from '../images/De-Neve-Plaza.jpg';
 import BPlate from '../images/BPlate.jpg';
 import Epi from '../images/Epi.jpg';
-
 import BCafe from '../images/BCafe.jpg'
 import Study from '../images/Study.jpg'
-
-
 import RendeWest from '../images/RendeWest.jpg'
 import RendeEast from '../images/RendeEast.jpg'
 
+// api to get all dining hall data
+const endpoint = "http://localhost:5000/dininghall";
+// dict of name to images, terrible way of doing this but oh well...
+const diningHallInfo = {
+  "De Neve" : DeNeve,
+  "BPlate": BPlate,
+  "Epicuria": Epi,
+  "Bruin Cafe": BCafe,
+  "The Study": Study,
+  "Rendezvous West": RendeWest,
+  "Rendezvous East": RendeEast  
+};
 
 function DiningHall(props) {
   //  function that returns a generic dining hall using info from props
@@ -33,62 +42,39 @@ function DiningHall(props) {
 function DiningHallContainer(props) {
   // element that contains all dining halls
 
-  // replace this with .fetch() to api later
-  const diningHallInfo = 
-  [
+  // state of dininghall data
+  const [dininghallData, setDiningHallData] = useState(
+    // template of api response, update later
     {
-      name: "De Neve",
-      capacity: 2,
-      rating: 2.4,
-      image: DeNeve
-    },
-    {
-      name: "BPlate",
-      capacity: 1,
-      rating: 4.6,
-      image: BPlate
-    },
-    {
-      name: "Epicuria",
-      capacity: 3,
-      rating: 4.5,
-      image: Epi
-    },
-    {
-      name: "Bruin Cafe",
-      capacity: 2,
-      rating: 3,
-      image: BCafe,
-    },
-    {
-      name: "The Study",
-      capacity: 3,
-      rating: 4,
-      image: Study
-    },
-    {
-      name: "Rendezvous West",
-      capacity: 1,
-      rating: 3.5,
-      image: RendeWest
-    },
-    {
-      name: "Rendezvous East",
-      capacity: 2,
-      rating: 2.9,
-      image: RendeEast
-    },
+      "dininghall": "undefined",
+      "capacity": "undefined",
+      "rating": "undefined"
+    }
+  );
 
-  ]
 
+  const getDiningHallData = async () => {
+    const response = await fetch(endpoint);
+    const resJSON = await response.json();
+    setDiningHallData(resJSON);
+
+  }
+  // calls getDiningHallData() every rendering (defined as '[]'), maybe later add 5 sec counter
+  useEffect(() => {
+    getDiningHallData();
+  }, []);
+
+
+  
   // mapping function: maps array of dining hall info to dining hall component
-  const infoToComponent = diningHallInfo.map((e) => {
+  const infoToComponent = Array.from(dininghallData).map((e) => {
+    const name = e.dininghall;
     return (
       <DiningHall
-        name={e.name}
+        name={name}
         capacity={e.capacity}
         rating={e.rating}
-        image={e.image}
+        image={diningHallInfo[name]}
       />
     );
   });
