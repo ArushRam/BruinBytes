@@ -9,6 +9,20 @@ import ReviewPage from './components/ReviewPage';
 import SignupPage from './components/SignupPage';
 
 
+function PublicRoute(props) {
+  // If NOT authorized, return an outlet that will render child elements
+  // If not, return element that will navigate to login page
+  return !props.currUser ? <Outlet /> : <Navigate to="/home" />
+}
+
+
+function PrivateRoute(props) {
+    // If authorized, return an outlet that will render child elements
+    // If not, return element that will navigate to login page
+    return props.currUser ? <Outlet /> : <Navigate to="/login" />;
+}
+
+
 function Home(props) {
   return (
     <div className="App">
@@ -27,9 +41,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Home currUser={userData}/>}>
           <Route path='/home' element={<DiningHallContainer />} />
-          <Route path='/login' element={<LoginPage />} />         
-          <Route path='/signup' element={<SignupPage />} />
-          <Route path='/review' element={<ReviewPage currUser={userData}/>} />
+          <Route path='/login' element={<PublicRoute currUser={userData} />} >
+            <Route path='/login' element={<LoginPage currUser={userData}/>} />  
+          </Route>    
+          <Route path='/signup' element={<PublicRoute currUser={userData} />} >
+            <Route path='/signup' element={<SignupPage currUser={userData}/>} />  
+          </Route>    
+          <Route path='/review' element={<PrivateRoute currUser={userData}/>} >
+            <Route element={<ReviewPage currUser={userData}/>} />
+          </Route>
           <Route path='/dininghall/:dininghall' element={<DiningHallInfo />} />
           <Route index element={<DiningHallContainer />}/>
           <Route /* for undefined routes */
