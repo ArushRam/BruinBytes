@@ -17,4 +17,7 @@ const userSchema = new mongoose.Schema({
     isLoggedIn: Boolean,
     currentDiningHall: String,
     favoriteDish: String,
-})
+});
+
+const User = mongoose.model('User', userSchema);
+module.exports = User;
