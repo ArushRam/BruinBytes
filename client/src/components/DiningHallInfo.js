@@ -7,12 +7,12 @@ function MenuItem(props) {
   const dishName = props.dishName
   const rating = props.rating
   const desc = props.desc
-  const [showingPopUp, setState] = useState(false)
+  const [showingPopUp, setShowingPopUp] = useState(false)
   return (
     <li className = "MenuItem">
       <h2
-      onMouseEnter={() => setState(true)}
-      onMouseLeave={() => setState(false)}
+      onMouseEnter={() => setShowingPopUp(true)}
+      onMouseLeave={() => setShowingPopUp(false)}
       >
         {dishName}
       </h2>
