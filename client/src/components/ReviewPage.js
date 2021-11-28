@@ -7,8 +7,8 @@ function ReviewPage(props) {
   const [userInput, setUserInput] = useState(
     {
       dininghall: "deneve",
-      review: "Type your review here",
-      rating: "1.5"
+      review: "",
+      rating: ""
     }
   );
   const handleSubmit = (e) => {
@@ -25,19 +25,31 @@ function ReviewPage(props) {
         <select 
           value={userInput.dininghall} 
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
+          required
         >
           <option value="deneve">De Neve</option>
-          <option value="bplate">BPlate</option>
+          <option value="bplate">Bruin Plate</option>
           <option value="epicuria">Epicuria</option>
+          <option value="thestudy">The Study</option>
+          <option value="bcafe">Bruin Cafe</option>
+          <option value="rendewest">Rendezvous West</option>
+          <option value="rendeeast">Rendezvous East</option>
         </select>
 
+        {/* Changed this to be a drop-down instead of text*/}
         <h3>Rating</h3>
-        <input 
-          type="text"
+        <select
           value={userInput.rating}
           onChange={e => setUserInput({...userInput, rating: e.target.value})}
-        />
-
+          required
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        
         <h3>Review</h3>
         <textarea
           value={userInput.review}
