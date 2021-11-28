@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../css/SignupPage.css'
+const axios = require('axios').default;
 
 function SignupPage() {
 
@@ -13,8 +14,20 @@ function SignupPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // submit POST to middleware here
-    console.log(userInput)
-    console.log("Signed up!");
+    axios.post('/users/addUser', {
+      username: userInput.username,
+      password: userInput.password
+    })
+    .then(function (response) {
+      console.log(response)
+      if (response.data === false) {
+        // What happens if user exists?
+        console.log(response)
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
