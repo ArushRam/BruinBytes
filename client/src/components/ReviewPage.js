@@ -16,6 +16,7 @@ function ReviewPage(props) {
     // submit POST to middleware here
     console.log(userInput)
     console.log("Submitted!");
+    setUserInput({dininghall: "", review: "", rating: 0})
   }
 
   return(
@@ -23,7 +24,7 @@ function ReviewPage(props) {
       <form onSubmit={e => handleSubmit(e)} >
         <h3>Dining Hall</h3>
         <select 
-          value={userInput.dininghall} 
+          placeholder = "choose dining hall"
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
           required
         >
@@ -52,9 +53,9 @@ function ReviewPage(props) {
         
         <h3>Review</h3>
         <textarea
-          value={userInput.review}
           onChange={e => setUserInput({...userInput, review: e.target.value})}
           className="reviewbox"
+          placeholder="Enter your review here"
         />
         <input type='submit'/>
       </form>
