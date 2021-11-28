@@ -5,6 +5,16 @@ import '../css/MenuBar.css';
 
 
 function MenuBar(props) {
+  let reviewLink;
+  if (props.currUser){
+    reviewLink = 
+    <Link to={{pathname: "/review", state: { currUser: props.currUser } }}
+    >Write a Review</Link>
+  } else {
+    reviewLink = 
+    <Link to={{pathname: "/login", state: { currUser: props.currUser } }}
+    >Write a Review</Link>
+  }
   return (
     <div className="menubar">
       <h2> Menu Bar </h2>
@@ -17,13 +27,7 @@ function MenuBar(props) {
           {!props.currUser && 
             <Link to="/signup">Sign up</Link>
           } | {" "}
-          {props.currUser &&   // render if user is logged in
-            <Link to={{
-              pathname: "/review",
-              state: { currUser: props.currUser }
-            }}
-            >Write a Review</Link>
-          }
+          {reviewLink}
         </ul>
       </nav>
     </div>

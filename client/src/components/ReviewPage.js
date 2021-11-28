@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import { Navigate } from 'react-router';
 import '../css/ReviewPage.css';
 
 
-function ReviewPage(props) {
+function Review(props) {
   // object containing parts of the user review
   const [userInput, setUserInput] = useState(
     {
@@ -61,6 +62,11 @@ function ReviewPage(props) {
       </form>
     </div>
   );
+}
+
+// for protected pages
+function ReviewPage(props) {
+  return props.currUser ? <Review currUser={props.currUser}/> : <Navigate to="/login"/>;
 }
 
 export default ReviewPage
