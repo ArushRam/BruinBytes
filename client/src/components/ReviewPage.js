@@ -6,9 +6,9 @@ function ReviewPage(props) {
   // object containing parts of the user review
   const [userInput, setUserInput] = useState(
     {
-      dininghall: "deneve",
-      review: "Type your review here",
-      rating: "1.5"
+      dininghall: "",
+      review: "",
+      rating: 0
     }
   );
   const handleSubmit = (e) => {
@@ -16,6 +16,7 @@ function ReviewPage(props) {
     // submit POST to middleware here
     console.log(userInput)
     console.log("Submitted!");
+    setUserInput({dininghall: "", review: "", rating: 0})
   }
 
   return(
@@ -23,7 +24,7 @@ function ReviewPage(props) {
       <form onSubmit={e => handleSubmit(e)} >
         <h3>Dining Hall</h3>
         <select 
-          value={userInput.dininghall} 
+          placeholder = "choose dining hall"
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
         >
           <option value="deneve">De Neve</option>
@@ -34,15 +35,15 @@ function ReviewPage(props) {
         <h3>Rating</h3>
         <input 
           type="text"
-          value={userInput.rating}
+          placeholder = "rate from 0 to 5"
           onChange={e => setUserInput({...userInput, rating: e.target.value})}
         />
 
         <h3>Review</h3>
         <textarea
-          value={userInput.review}
           onChange={e => setUserInput({...userInput, review: e.target.value})}
           className="reviewbox"
+          placeholder="Enter your review here"
         />
         <input type='submit'/>
       </form>
