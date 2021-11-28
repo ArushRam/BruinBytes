@@ -5,12 +5,13 @@ import './MenuBar.css';
 function MenuBar(props) {
   return (
     <div className="menubar">
-      <h2>Menu Bar</h2>
+      <h2> Menu Bar </h2>
       <nav>
         <ul>
           <Link to="/home">Home</Link> |{" "}
           <Link to="/login">Login</Link>|{" "}
-          <Link to="/review">Write a Review</Link>
+          <Link to="/review">Write a Review</Link>|{" "}
+          <Link to="/signup">Sign up</Link>|{" "}
         </ul>
       </nav>
     </div>
