@@ -16,7 +16,6 @@ function SignupPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // submit POST to middleware here
     
     axios.post('/users/addUser', {
       username: userInput.username,
