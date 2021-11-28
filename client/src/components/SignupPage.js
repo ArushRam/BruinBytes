@@ -27,10 +27,12 @@ function SignupPage() {
       if (response.data === false) {
         // What happens if user exists?
         setErrMsg("User already exists");
-        console.log(response)
+      } else if (response.data === true) {
+          setErrMsg("");
       }
     })
     .catch(function (error) {
+      setErrMsg("Invalid username or password")
       console.log(error);
     });
   }
