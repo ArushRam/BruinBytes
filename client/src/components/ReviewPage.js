@@ -6,9 +6,9 @@ function ReviewPage(props) {
   // object containing parts of the user review
   const [userInput, setUserInput] = useState(
     {
-      dininghall: "",
+      dininghall: "deneve",
       review: "",
-      rating: 0
+      rating: ""
     }
   );
   const handleSubmit = (e) => {
@@ -26,19 +26,31 @@ function ReviewPage(props) {
         <select 
           placeholder = "choose dining hall"
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
+          required
         >
           <option value="deneve">De Neve</option>
-          <option value="bplate">BPlate</option>
+          <option value="bplate">Bruin Plate</option>
           <option value="epicuria">Epicuria</option>
+          <option value="thestudy">The Study</option>
+          <option value="bcafe">Bruin Cafe</option>
+          <option value="rendewest">Rendezvous West</option>
+          <option value="rendeeast">Rendezvous East</option>
         </select>
 
+        {/* Changed this to be a drop-down instead of text*/}
         <h3>Rating</h3>
-        <input 
-          type="text"
-          placeholder = "rate from 0 to 5"
+        <select
+          value={userInput.rating}
           onChange={e => setUserInput({...userInput, rating: e.target.value})}
-        />
-
+          required
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        
         <h3>Review</h3>
         <textarea
           onChange={e => setUserInput({...userInput, review: e.target.value})}
