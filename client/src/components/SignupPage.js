@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './SignupPage.css'
+import '../css/SignupPage.css'
 
 function SignupPage() {
 
@@ -21,21 +21,23 @@ function SignupPage() {
     <div className="signuppage">
       <h1>Sign up</h1>
       <form onSubmit={e => handleSubmit(e)} >
-      <h2>Username: </h2>
-      <input 
-        type="text"
-        value={userInput.username}
-        onChange={e => setUserInput({...userInput, username: e.target.value})}
-      />
-      <h2>Password: </h2>
-      <input 
-        type='password' 
-        name='password'
-        value={userInput.password}
-        onChange={e => setUserInput({...userInput, password: e.target.value})}
-      />
+        <h2>Username: </h2>
+        <input 
+            type="text"
+            value={userInput.username}
+            onChange={e => setUserInput({...userInput, username: e.target.value})}
+            required
+        />
+        <h2>Password: </h2>
+        <input 
+            type='password' 
+            name='password'
+            value={userInput.password}
+            onChange={e => setUserInput({...userInput, password: e.target.value})}
+            required
+        />
 
-      <button type="submit" class="signupButton">Sign up</button>
+        <button type="submit" class="signupButton">Sign up</button>
     </form>
     </div>
   );
