@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useLocation } from "react-router-dom";
-import './DiningHallInfo.css'
+import '../css/DiningHallInfo.css'
 
 // Functional component representing a menu item (dish) 
 function MenuItem(props) {

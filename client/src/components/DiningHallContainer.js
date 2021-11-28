@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import './DiningHallContainer.css';
+import '../css/DiningHallContainer.css';
 
 import DeNeve from '../images/De-Neve-Plaza.jpg';
 import BPlate from '../images/BPlate.jpg';

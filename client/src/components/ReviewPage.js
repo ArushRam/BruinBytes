@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './ReviewPage.css';
+import '../css/ReviewPage.css';
 
 
 function ReviewPage(props) {

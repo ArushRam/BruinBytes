@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import './MenuBar.css';
+import '../css/MenuBar.css';
 
 function MenuBar(props) {
   return (
