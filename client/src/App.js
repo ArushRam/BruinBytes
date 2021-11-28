@@ -6,10 +6,12 @@ import MenuBar from './components/MenuBar.js';
 
 
 function App() {
+  const [userData, setUserData] = useState(null);  // contains data on logged in user
+
 
   return (
     <div className="App">
-      <MenuBar />
+      <MenuBar currUser={userData}/>
       <Outlet />
     </div>
   );
