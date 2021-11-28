@@ -1,4 +1,5 @@
 # 35L-project
 
-Remember to npm install mongoose before starting api
-Also npm install axios
+Before running npm start, run:
+npm install mongoose in api
+npm install axios
