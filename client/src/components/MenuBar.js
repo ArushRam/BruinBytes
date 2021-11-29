@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom';
 import '../css/MenuBar.css';
 
 
-function Logout(logoutFunc) {
-  logoutFunc(null);
-}
-
-
-
-
 
 function MenuBar(props) {
   let reviewLink;
+
   if (props.currUser){
     reviewLink = 
     <Link to={{pathname: "/review", state: { currUser: props.currUser } }}
@@ -34,9 +28,11 @@ function MenuBar(props) {
           {!props.currUser && 
             <Link to="/signup">Sign up</Link>
           } | {" "}
+          {/* //React HATES this onClick function, fix later
           {props.currUser && 
-            <Link to="/home" onClick={Logout(props.setUser)}>Logout</Link>
+            <Link to="/home" onClick={props.setUser(null)}>Logout</Link>
           } 
+        */}
           {reviewLink}
         </ul>
       </nav>

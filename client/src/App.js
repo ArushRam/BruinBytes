@@ -42,12 +42,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home currUser={userData} setUser={setUserData} />}>
           <Route path='/home' element={<DiningHallContainer />} />
-          {/** 
           <Route path='/login' element={<PublicRoute currUser={userData} />} >
             <Route path='/login' element={<LoginPage currUser={userData} setUser={setUserData} />} />  
           </Route>    
-          **/}
-          <Route path='/login' element={<LoginPage currUser={userData} setUser={setUserData} />} />  
           <Route path='/signup' element={<PublicRoute currUser={userData} />} >
             <Route path='/signup' element={<SignupPage currUser={userData} setUser={setUserData}/>} />  
           </Route>    
