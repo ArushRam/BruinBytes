@@ -58,33 +58,20 @@ router.route('/signin')
   })
 });
 
-router.route('/checkIn')
+router.route('/check')
   .post((req, res) => {
     User.findOne({username: req.body.username})
       .then(user => {
         if (user == null) {return res.json("user not found");}
         else {
-          user.currentDiningHall = req.body.diningHall;
+          if (req.body.in == true) {user.currentDiningHall = req.body.diningHall;}
+          else {user.currentDiningHall = "";}
           user.save();
           res.json(user.currentDiningHall);
         }
       })
       .catch(err => res.status(400).json(err));
   })
-
-router.route('/checkOut')
-.post((req, res) => {
-  User.findOne({username: req.body.username})
-    .then(user => {
-      if (user == null) {return res.json("user not found");}
-      else {
-        user.currentDiningHall = "";
-        user.save();
-        res.json(user.currentDiningHall);
-      }
-    })
-    .catch(err => res.status(400).json(err));
-})
 
 router.route('/favFood')
   .get((req, res) => {
