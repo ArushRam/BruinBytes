@@ -62,7 +62,7 @@ function DiningHallInfo(props) {
   }
 
   useEffect(() => {
-    getReviewData();
+   getReviewData();
   }, []);
   // Will import menu entries using server-side data
   // Using hard-coded examples for now
