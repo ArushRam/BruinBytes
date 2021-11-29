@@ -1,0 +1,32 @@
+.MenuItem {
+    list-style-type: none;
+}
+
+.ItemDescription {
+    z-index: 10;
+    position: relative;
+    display: inline-block;
+    border-color: white;
+    background-color: blue;
+    padding: 15px;
+    color: white;
+}
+
+.Comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+
+    border: solid;
+    border-width: 1px;
+}
+
+.Toprow {
+    display: flex;
+    flex-direction: row;
+}
+
+p {
+    margin: 4px 0px;
+}
