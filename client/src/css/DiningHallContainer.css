@@ -21,3 +21,8 @@
   max-width: 350px;
 }
 
+img {
+  max-width: 300px;
+  height: auto;
+}
+
