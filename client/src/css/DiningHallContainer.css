@@ -1,26 +1,23 @@
 .container {
+  font-family: 'VT323', monospace;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .dininghall {
-  display: flex;
+  border: 2px solid black;
+  font-family: 'VT323', monospace;
+  background: white;
+  /* border-radius: 20px 20px;*/
+  position: relative;
+  margin: 20px auto 0 auto;
+  box-shadow: 5px 10px black;
+  /* display: flex;
   flex-direction: column;
   border: solid;
   padding: 10px;
-  margin: 10px;
+  margin: 10px; */
   max-width: 350px;
 }
 
-img {
-  width: 100%;
-}
-
-h1 {
-  margin: 2px;
-}
-
-h3 {
-  margin: 5px;
-}

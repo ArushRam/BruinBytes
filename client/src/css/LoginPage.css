@@ -1,4 +1,13 @@
-.loginpage {}
+.loginpage {
+  font-family: 'VT323', monospace;
+  background-repeat: no-repeat;
+	background-color: white;
+	background-position: center bottom;
+	background-attachment: fixed;
+	margin-top: 100px;
+	border-radius: 20px;
+}
+
 
 .loginButton {
   background-color: blue;
@@ -7,3 +16,4 @@
   padding: 5px 12px;
   margin-top: 10px
 }
+

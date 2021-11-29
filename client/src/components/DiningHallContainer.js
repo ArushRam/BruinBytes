@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/DiningHallContainer.css';
 
-import DeNeve from '../images/De-Neve-Plaza.jpg';
-import BPlate from '../images/BPlate.jpg';
-import Epi from '../images/Epi.jpg';
+import DeNeve from '../images/DeNeveUCLA.jpg';
+import BPlate from '../images/BplateUCLA.jpg';
+import Epi from '../images/Epicuria.jpg';
 import BCafe from '../images/BCafe.jpg'
 import Study from '../images/Study.jpg'
 import RendeWest from '../images/RendeWest.jpg'

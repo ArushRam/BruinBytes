@@ -8,6 +8,9 @@ function Logout(logoutFunc) {
 }
 
 
+
+
+
 function MenuBar(props) {
   let reviewLink;
   if (props.currUser){
@@ -33,12 +36,14 @@ function MenuBar(props) {
           } | {" "}
           {props.currUser && 
             <Link to="/home" onClick={Logout(props.setUser)}>Logout</Link>
-          } | {" "}
+          } 
           {reviewLink}
         </ul>
       </nav>
     </div>
   );
 }
+
+
 
 export default MenuBar; 
