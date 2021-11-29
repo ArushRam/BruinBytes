@@ -4,7 +4,7 @@
   height: 50%;
   display: flex;
   flex-direction: row;
-  background-color: rgb(80, 202, 80);
+  background-color: lightskyblue;
   background-size: 100%;
   position: relative;
   /*border-radius: 0 0 20px 20px;*/
@@ -34,7 +34,7 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 5px;
-  background-color: rgb(80, 202, 80);
+  background-color: lightskyblue;
   color: black;
 }
 

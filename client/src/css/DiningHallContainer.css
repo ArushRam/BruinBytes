@@ -13,11 +13,11 @@
   position: relative;
   margin: 20px auto 0 auto;
   box-shadow: 5px 10px black;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   border: solid;
   padding: 10px;
-  margin: 10px; */
+  margin: 10px; 
   max-width: 350px;
 }
 

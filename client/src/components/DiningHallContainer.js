@@ -7,8 +7,8 @@ import BPlate from '../images/BplateUCLA.jpg';
 import Epi from '../images/Epicuria.jpg';
 import BCafe from '../images/BCafe.jpg'
 import Study from '../images/Study.jpg'
-import RendeWest from '../images/RendeWest.jpg'
-import RendeEast from '../images/RendeEast.jpg'
+import RendeWest from '../images/RendeWestUCLA.jpg'
+import RendeEast from '../images/RendeEastUCLA.jpg'
 
 // api to get all dining hall data
 const endpoint = "http://localhost:5000/dininghall";
@@ -43,7 +43,6 @@ function DiningHall(props) {
     </div>
   );
 }
-
 
 function DiningHallContainer(props) {
   // element that contains all dining halls
