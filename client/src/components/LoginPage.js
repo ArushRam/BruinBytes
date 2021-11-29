@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../css/LoginPage.css'
+var axios = require('axios');
 
 function LoginPage() {
 
@@ -9,10 +10,31 @@ function LoginPage() {
       password: ""
     }
   )
+  const [errMsg, setErrMsg] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // submit POST to middleware here
+    
+    axios.post('/users/signin', {
+      username: userInput.username,
+      password: userInput.password
+    })
+    .then(response => {
+      if (response.data == "success") {
+        setErrMsg("");
+      }
+      else if (response.data == "username error") {
+        setErrMsg("User does not exist");
+      }
+      else if (response.data == "password error") {
+        setErrMsg("Incorrect password");
+      }
+    })
+    .catch(error => {
+      setErrMsg("An error occurred");
+      console.log(error)
+    });
+
     console.log(userInput)
     console.log("Submitted!");
   }
@@ -20,6 +42,7 @@ function LoginPage() {
   return (
     <div className="loginpage">
       <h1>Log in</h1>
+      <p>{errMsg}</p>
       <form onSubmit={e => handleSubmit(e)} >
         <h2>Username: </h2>
         <input 
