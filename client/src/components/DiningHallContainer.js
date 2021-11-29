@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './DiningHallContainer.css';
 
-import DeNeve from '../images/De-Neve-Plaza.jpg';
-import BPlate from '../images/BPlate.jpg';
-import Epi from '../images/Epi.jpg';
+import DeNeve from '../images/DeNeveUCLA.jpg';
+import BPlate from '../images/BplateUCLA.jpg';
+import Epicuria from '../images/Epicuria.jpg';
 
 
 function DiningHall(props) {
@@ -37,7 +37,7 @@ function DiningHallContainer(props) {
     {
       name: "Epicuria",
       capacity: "3",
-      image: Epi
+      image: Epicuria
     }
   ]
 

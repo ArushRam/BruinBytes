@@ -1,14 +1,47 @@
+
 .menubar {
+  font-family: 'VT323' monospace;
+  height: 50%;
   display: flex;
   flex-direction: row;
-  background-color: blue;
+  background-color: rgb(80, 202, 80);
+  background-size: 100%;
+  position: relative;
+  /*border-radius: 0 0 20px 20px;*/
+  box-shadow: 5px 10px black;
+  border: 2px solid black;
   color: white;
   align-items: center;
+}
+
+.searchBar{
+
+  text-align: right;
+  position: relative;
+
+}
+
+.searchButton{
+
+  background-position: center;
+  background-size: 90%;
+  position: relative;
+  border: 2px black;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 5px;
-  background-color: white;
+  background-color: rgb(80, 202, 80);
+  color: black;
 }
+
+.profileButton{
+  position: relative;
+  padding: 5px;
+}
+
+
+
+
