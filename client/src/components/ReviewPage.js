@@ -13,11 +13,29 @@ function Review(props) {
       rating: ""
     }
   );
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // submit POST to middleware here
-    console.log(userInput)
-    console.log("Submitted!");
+    // send POST request to the backend
+    // placeholder route since backend section isn't implemented yet
+    axios.post('users/reviewSubmit', {
+      username: userInput.dininghall,
+      password: userInput.review,
+      rating: userInput.rating
+    })
+    .then(response => {
+      console.log(response)
+      if (response.data === "success") {
+        console.log("Successful review submit")
+      }
+      else if (response.data === "error") {
+        console.log("Error in review submit")
+      }
+    })
+    .catch(error => {
+      console.log("Error: " + error)
+    });
+
     setUserInput({dininghall: "", review: "", rating: 0})
   }
 
