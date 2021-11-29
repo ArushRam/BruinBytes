@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import { Outlet, Route, Routes, Navigate } from "react-router-dom";
 import MenuBar from './components/MenuBar.js'; 
 import LoginPage from './components/LoginPage'
@@ -36,16 +36,20 @@ function Home(props) {
 
 function App() {
   const [userData, setUserData] = useState(null);  // contains data on logged in user
+  
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home currUser={userData} setUser={setUserData} />}>
           <Route path='/home' element={<DiningHallContainer />} />
+          {/** 
           <Route path='/login' element={<PublicRoute currUser={userData} />} >
-            <Route path='/login' element={<LoginPage currUser={userData}/>} />  
+            <Route path='/login' element={<LoginPage currUser={userData} setUser={setUserData} />} />  
           </Route>    
+          **/}
+          <Route path='/login' element={<LoginPage currUser={userData} setUser={setUserData} />} />  
           <Route path='/signup' element={<PublicRoute currUser={userData} />} >
-            <Route path='/signup' element={<SignupPage currUser={userData}/>} />  
+            <Route path='/signup' element={<SignupPage currUser={userData} setUser={setUserData}/>} />  
           </Route>    
           <Route path='/review' element={<PrivateRoute currUser={userData}/>} >
             <Route element={<ReviewPage currUser={userData}/>} />

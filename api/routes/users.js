@@ -28,7 +28,7 @@ router.route('/addUser').post(async (req, res) => {
         res.json(false)
       } else {
         newUser.save()
-        .then(() => res.json(true))
+        .then(() => res.json())
         .catch(err => res.status(400).json('Error: ' + err));
       }});
   } catch {
@@ -44,12 +44,12 @@ router.route('/signin')
 
   User.findOne({username: username}).then(async user => {
     if (user == null) {
-      return res.json("username error");
+      return res.status(400).json("username error");
     }
     else {
       try {
-        if (await bcrypt.compare(password, user.password)) {res.json("success");}
-        else {res.json("password error");}
+        if (await bcrypt.compare(password, user.password)) {res.json(user);}
+        else {res.status(400).json("password error");}
       }
       catch {
         res.status(500).send("server error");

@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/LoginPage.css'
 var axios = require('axios');
 
-function LoginPage() {
-
+function LoginPage(props) {
   const [userInput, setUserInput] = useState(
     {
       username: "",
@@ -12,17 +11,19 @@ function LoginPage() {
     }
   )
   const [errMsg, setErrMsg] = useState();
+    
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     axios.post('/users/signin', {
       username: userInput.username,
       password: userInput.password
     })
     .then(response => {
-      if (response.data === "success") {
+      if (response.statusText === "OK") {
         setErrMsg("");
+        console.log(response.data);
+        //props.setUser(response.data);     ??!?!?!?!? breaks everything????
       }
       else if (response.data === "username error") {
         setErrMsg("User does not exist");
