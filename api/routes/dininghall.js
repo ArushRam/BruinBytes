@@ -111,9 +111,11 @@ router.route('/addDishToMenu')
               dish.vegan = vegan;
               dish.halls.push(hall._id);
               dish.save()
+                .then(() => {
+                  hall.menu.push(dish._id);
+                  hall.save();
+                })
                 .catch((err) => res.status(400).json("Error: " + err))
-              hall.menu.push(dish._id);
-              hall.save();
             }
           })
       }
