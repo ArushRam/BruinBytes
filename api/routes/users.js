@@ -37,7 +37,8 @@ router.route('/addUser').post(async (req, res) => {
 });
 
 // handle sign in
-router.route('/signin').post(async (req, res) => {
+router.route('/signin')
+.post(async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 

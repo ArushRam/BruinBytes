@@ -17,6 +17,7 @@ const diningHallSchema = new Schema({
         type: Number,
         min: 0
     },
+    numRatings: Number,
     reviews: [String],
     menu: [String]
 });

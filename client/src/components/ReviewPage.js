@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../css/ReviewPage.css';
+var axios = require('axios');
 
 
 function ReviewPage(props) {
