@@ -26,7 +26,7 @@ function PrivateRoute(props) {
 function Home(props) {
   return (
     <div className="App">
-      <MenuBar currUser={props.currUser}/>
+      <MenuBar currUser={props.currUser} setUser={props.setUser}/>
       <Outlet />
     </div>
   );
@@ -39,7 +39,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Home currUser={userData}/>}>
+        <Route path='/' element={<Home currUser={userData} setUser={setUserData} />}>
           <Route path='/home' element={<DiningHallContainer />} />
           <Route path='/login' element={<PublicRoute currUser={userData} />} >
             <Route path='/login' element={<LoginPage currUser={userData}/>} />  

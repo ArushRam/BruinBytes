@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import '../css/MenuBar.css';
 
 
+function Logout(logoutFunc) {
+  logoutFunc(null);
+}
+
 
 function MenuBar(props) {
   let reviewLink;
@@ -26,6 +30,9 @@ function MenuBar(props) {
           } |{" "}
           {!props.currUser && 
             <Link to="/signup">Sign up</Link>
+          } | {" "}
+          {props.currUser && 
+            <Link to="/home" onClick={Logout(props.setUser)}>Logout</Link>
           } | {" "}
           {reviewLink}
         </ul>
