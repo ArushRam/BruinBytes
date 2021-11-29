@@ -55,8 +55,9 @@ router.get('/:hallName', function(req, res) {
     })
 });
 
-router.route('/checkIn/:hallName').patch((req, res) => {
-  const hallName = req.params.hallName;
+router.route('/checkIn')
+.patch((req, res) => {
+  const hallName = req.body.hallName;
   hallModel.findOne({name: hallName})
     .then(result => {
       if (result == null) {

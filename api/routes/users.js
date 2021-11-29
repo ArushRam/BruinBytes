@@ -58,20 +58,52 @@ router.route('/signin')
   })
 });
 
+router.route('/checkIn')
+  .post((req, res) => {
+    User.findOne({username: req.body.username})
+      .then(user => {
+        if (user == null) {return res.json("user not found");}
+        else {
+          user.currentDiningHall = req.body.diningHall;
+          user.save();
+          res.json(user.currentDiningHall);
+        }
+      })
+      .catch(err => res.status(400).json(err));
+  })
+
+router.route('/checkOut')
+.post((req, res) => {
+  User.findOne({username: req.body.username})
+    .then(user => {
+      if (user == null) {return res.json("user not found");}
+      else {
+        user.currentDiningHall = "";
+        user.save();
+        res.json(user.currentDiningHall);
+      }
+    })
+    .catch(err => res.status(400).json(err));
+})
+
 router.route('/favFood')
   .get((req, res) => {
     User.findOne({username: req.body.username})
       .then(user => {
-        res.json(user.favoriteDish);
+        if (user == null) {return res.json("user not found");}
+        else {res.json(user.favoriteDish);}
       })
       .catch(err => res.status(400).json(err));
   })
   .post((req, res) => {
     User.findOne({username: req.body.username})
       .then(user => {
-        user.favoriteDish = req.body.favFood;
-        user.save();
-        res.json(user);
+        if (user == null) {return res.json("user not found");}
+        else {
+          user.favoriteDish = req.body.favFood;
+          user.save();
+          res.json(user);
+        }
       })
       .catch(err => res.status(400).json(err));
   })
