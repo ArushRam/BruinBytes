@@ -49,7 +49,7 @@ function App() {
             <Route path='/signup' element={<SignupPage currUser={userData} setUser={setUserData}/>} />  
           </Route>    
           <Route path='/review' element={<PrivateRoute currUser={userData}/>} >
-            <Route element={<ReviewPage currUser={userData}/>} />
+            <Route path='/review' element={<ReviewPage currUser={userData}/>} />
           </Route>
           <Route path='/dininghall/:dininghall' element={<DiningHallInfo currUser={userData}/>} />
           <Route index element={<DiningHallContainer />}/>
