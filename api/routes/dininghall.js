@@ -55,17 +55,19 @@ router.route('/addReview').post((req, res) => {
 router.route('/checkIn')
 .patch((req, res) => {
   const hallName = req.body.hallName;
+  const username = req.body.username;
+  
   hallModel.findOne({name: hallName})
     .then(result => {
       if (result == null) {
         res.send("dining hall not found")
       }
       else {
-        User.findOne({username: req.body.username})
+        User.findOne({username: username})
         .then(user => {
           if (user == null) {return res.json("user error");}
           else {
-            user.currentDiningHall = req.body.hallName;
+            user.currentDiningHall = hallName;
             user.save();
             result.population += 1;
             result.save()
