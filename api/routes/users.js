@@ -44,12 +44,12 @@ router.route('/signin')
 
   User.findOne({username: username}).then(async user => {
     if (user == null) {
-      return res.status(400).json("username error");
+      return res.json("username error");
     }
     else {
       try {
         if (await bcrypt.compare(password, user.password)) {res.json(user);}
-        else {res.status(400).json("password error");}
+        else {res.json("password error");}
       }
       catch {
         res.status(500).send("server error");
