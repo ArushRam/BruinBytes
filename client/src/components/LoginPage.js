@@ -30,7 +30,7 @@ function LoginPage(props) {
       else if (response.statusText === "OK") {
         setErrMsg("");
         console.log("Logged in successfully")
-        props.setUser(response.data);    
+        props.setUser(response.data.username);    
       }
       
     })

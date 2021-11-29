@@ -6,15 +6,19 @@ import '../css/MenuBar.css';
 
 function MenuBar(props) {
   let reviewLink;
-
+  let currUserName;
   if (props.currUser){
     reviewLink = 
     <Link to={{pathname: "/review", state: { currUser: props.currUser } }}
-    >Write a Review</Link>
+    >Write a Review</Link>;
+
+    currUserName = <h2>Welcome {props.currUser}!</h2>;
   } else {
     reviewLink = 
     <Link to={{pathname: "/login", state: { currUser: props.currUser } }}
-    >Write a Review</Link>
+    >Write a Review</Link>;
+
+    currUserName = <h2></h2>;
   }
   return (
     <div className="menubar">
@@ -34,6 +38,7 @@ function MenuBar(props) {
           } 
         */}
           {reviewLink}
+          {currUserName}
         </ul>
       </nav>
     </div>

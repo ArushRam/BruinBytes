@@ -18,9 +18,10 @@ function Review(props) {
     e.preventDefault();
     // send POST request to the backend
     // placeholder route since backend section isn't implemented yet
-    axios.post('users/reviewSubmit', {
+    axios.post('/dininghall/addReview', {
+      hallName: userInput.dininghall,
       username: userInput.dininghall,
-      password: userInput.review,
+      //currTime: userInput.currTime,
       rating: userInput.rating
     })
     .then(response => {
