@@ -57,4 +57,22 @@ router.route('/addReview').post((req, res) => {
     })
 });
 
+router.route('/checkIn/:hallName').patch((req, res) => {
+  const hallName = req.params.hallName;
+  hallModel.findOne({name: hallName})
+    .then(result => {
+      if (result == null) {
+        res.send("dining hall not found")
+      }
+      else {
+        result.population += 1;
+        result.save()
+        res.json(result);
+      }
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    })
+});
+
 module.exports = router;

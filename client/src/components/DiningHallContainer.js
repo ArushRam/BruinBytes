@@ -25,9 +25,15 @@ const diningHallInfo = {
 
 function DiningHall(props) {
   //  function that returns a generic dining hall using info from props
+  const data = {"name" : props.name, "capacity": props.capacity, "rating":props.rating};
+  
   return (
     <div className="dininghall" onClick={() => console.log("Click!")}>
-      <Link to={"/dininghall/"+props.name}>
+      <Link to={{
+        pathname:"/dininghall/"+props.name,
+        state: {data}
+        }}>
+
       <img src={props.image} alt={props.name}/>
       <h1>{props.name}</h1>
       <h3>Capacity: {props.capacity}/3</h3>
