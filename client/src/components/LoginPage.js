@@ -20,17 +20,19 @@ function LoginPage(props) {
       password: userInput.password
     })
     .then(response => {
-      if (response.statusText === "OK") {
-        setErrMsg("");
-        console.log(response.data);
-        //props.setUser(response.data);     ??!?!?!?!? breaks everything????
-      }
-      else if (response.data === "username error") {
+      console.log(response)
+      if (response.data === "username error") {
         setErrMsg("User does not exist");
       }
       else if (response.data === "password error") {
         setErrMsg("Incorrect password");
       }
+      else if (response.statusText === "OK") {
+        setErrMsg("");
+        console.log("Logged in successfully")
+        //props.setUser(response.data);     ??!?!?!?!? breaks everything????
+      }
+      
     })
     .catch(error => {
       setErrMsg("An error occurred");
