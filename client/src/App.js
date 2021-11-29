@@ -54,7 +54,7 @@ function App() {
           <Route path='/review' element={<PrivateRoute currUser={userData}/>} >
             <Route element={<ReviewPage currUser={userData}/>} />
           </Route>
-          <Route path='/dininghall/:dininghall' element={<DiningHallInfo />} />
+          <Route path='/dininghall/:dininghall' element={<DiningHallInfo currUser={userData}/>} />
           <Route index element={<DiningHallContainer />}/>
           <Route /* for undefined routes */
             path="*"
