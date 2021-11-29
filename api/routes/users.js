@@ -18,7 +18,7 @@ router.route('/addUser').post(async (req, res) => {
   try {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    const newUser = new User({username: username, password: hashedPassword});
+    const newUser = new User({username: username, password: hashedPassword, currentDiningHall:"", favoriteDish:""});
     
     // userExists records whether or not there is already a user in the database
     // If there is, we just return false and do nothing
@@ -57,5 +57,23 @@ router.route('/signin')
     }
   })
 });
+
+router.route('/favFood')
+  .get((req, res) => {
+    User.findOne({username: req.body.username})
+      .then(user => {
+        res.json(user.favoriteDish);
+      })
+      .catch(err => res.status(400).json(err));
+  })
+  .post((req, res) => {
+    User.findOne({username: req.body.username})
+      .then(user => {
+        user.favoriteDish = req.body.favFood;
+        user.save();
+        res.json(user);
+      })
+      .catch(err => res.status(400).json(err));
+  })
 
 module.exports = router;

@@ -14,7 +14,6 @@ const userSchema = new Schema({
         immutable: true,
         minlength: 5
     },
-    isLoggedIn: Boolean,
     currentDiningHall: String,
     favoriteDish: String,
 });
