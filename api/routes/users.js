@@ -48,7 +48,7 @@ router.route('/signin')
     }
     else {
       try {
-        if (await bcrypt.compare(password, user.password)) {res.json(user);}
+        if (await bcrypt.compare(password, user.password)) {res.json(user.username);}
         else {res.json("password error");}
       }
       catch {

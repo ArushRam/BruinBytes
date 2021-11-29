@@ -12,13 +12,13 @@ function MenuBar(props) {
     <Link to={{pathname: "/review", state: { currUser: props.currUser } }}
     >Write a Review</Link>;
 
-    currUserName = <h2>Welcome {props.currUser}!</h2>;
+    currUserName = <h3 className="welcome">Welcome {props.currUser}!</h3>;
   } else {
     reviewLink = 
     <Link to={{pathname: "/login", state: { currUser: props.currUser } }}
     >Write a Review</Link>;
 
-    currUserName = <h2></h2>;
+    currUserName = <h3 className="welcome"> </h3>;
   }
   return (
     <div className="menubar">
@@ -38,9 +38,9 @@ function MenuBar(props) {
           } 
         */}
           {reviewLink}
-          {currUserName}
         </ul>
       </nav>
+      {currUserName}
     </div>
   );
 }
