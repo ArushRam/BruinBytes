@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import '../css/SignupPage.css'
 const axios = require('axios').default;
 
@@ -59,6 +60,7 @@ function SignupPage() {
 
         <button type="submit" className="signupButton">Sign up</button>
     </form>
+    <Link to="/login">Already have an account? Log in here.</Link>
     </div>
   );
 }

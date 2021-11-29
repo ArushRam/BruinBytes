@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import '../css/LoginPage.css'
 var axios = require('axios');
 
@@ -20,13 +21,13 @@ function LoginPage() {
       password: userInput.password
     })
     .then(response => {
-      if (response.data == "success") {
+      if (response.data === "success") {
         setErrMsg("");
       }
-      else if (response.data == "username error") {
+      else if (response.data === "username error") {
         setErrMsg("User does not exist");
       }
-      else if (response.data == "password error") {
+      else if (response.data === "password error") {
         setErrMsg("Incorrect password");
       }
     })
@@ -62,6 +63,7 @@ function LoginPage() {
 
         <button type="submit" className="loginButton">Log in</button>
       </form>
+      <Link to="/signup">No account? Sign up here.</Link>
     </div>
   );
 }
