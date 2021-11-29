@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useLocation } from "react-router-dom";
+//import { baseModelName } from '../../../api/models/diningHall.model';
 import '../css/DiningHallInfo.css'
 var axios = require('axios');
 
@@ -69,11 +70,7 @@ function DiningHallInfo(props) {
   }
 
   useEffect(() => {
-<<<<<<< HEAD
-   getReviewData();
-=======
     getDiningHallData();
->>>>>>> b5689530a46a407ca86673ee3b04fdf58937a5f8
   }, []);
   // Will import menu entries using server-side data
   // Using hard-coded examples for now
@@ -103,9 +100,17 @@ function DiningHallInfo(props) {
     //   console.log("Must be signed-in to check-in")
     // }
     setCheckedIn(true)
-    axios.patch("/dininghall/checkIn/"+name)
+    axios.patch("/dininghall/checkIn", {hallName: name})
     .then(response => {
-
+      console.log(response);
+    })
+    .catch(error => {
+      console.log("ERROR: " + error)
+    });
+    
+    axios.post('/users/check', {in: true, diningHall: name})
+    .then(response => {
+      console.log(response);
     })
     .catch(error => {
       console.log("ERROR: " + error)

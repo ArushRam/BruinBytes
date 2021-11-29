@@ -4,7 +4,6 @@ let hallModel = require('../models/diningHall.model');
 
 /* get all dininghall data */
 router.get('/', function(req, res) {
-  console.log(hallModel.find());
   hallModel.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json("error"))
