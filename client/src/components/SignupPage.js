@@ -1,3 +1,4 @@
+//import { PromiseProvider } from 'mongoose';
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/SignupPage.css'
@@ -5,7 +6,7 @@ const axios = require('axios').default;
 
 const endpoint = "http://localhost/users/addUser";
 
-function SignupPage() {
+function SignupPage(props) {
 
   const [userInput, setUserInput] = useState(
     {
@@ -27,8 +28,13 @@ function SignupPage() {
       if (response.data === false) {
         // What happens if user exists?
         setErrMsg("User already exists");
-      } else if (response.data === true) {
+      } else if (response.status === 400) {
+          setErrMsg(response.data);
+      } else {
           setErrMsg("");
+          console.log("Signed up Successfully");
+          props.setUser(response.data);
+          console.log(response);
       }
     })
     .catch(function (error) {
