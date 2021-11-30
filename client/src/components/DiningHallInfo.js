@@ -96,25 +96,26 @@ function DiningHallInfo(props) {
       console.log("Already checked-in")
       return
     }
-    // if (!props.currUser) {
-    //   console.log("Must be signed-in to check-in")
-    // }
+    if (!props.currUser) {
+       console.log("Must be signed-in to check-in")
+       return
+    }
     setCheckedIn(true)
-    axios.patch("/dininghall/checkIn", {hallName: name})
+    axios.patch("/dininghall/checkIn", {hallName: name, username: props.currUser})
     .then(response => {
       console.log(response);
     })
     .catch(error => {
       console.log("ERROR: " + error)
     });
-    
+    /*
     axios.post('/users/check', {in: true, diningHall: name})
     .then(response => {
       console.log(response);
     })
     .catch(error => {
       console.log("ERROR: " + error)
-    });
+    }); */
   }
 
   return(

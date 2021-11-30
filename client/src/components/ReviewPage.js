@@ -8,29 +8,34 @@ function Review(props) {
   // object containing parts of the user review
   const [userInput, setUserInput] = useState(
     {
-      dininghall: "deneve",
+      dininghall: "De Neve",
       review: "",
-      rating: ""
+      rating: "",
+      username: null
     }
   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // send POST request to the backend
-    // placeholder route since backend section isn't implemented yet
     axios.post('/dininghall/addReview', {
       hallName: userInput.dininghall,
-      username: userInput.dininghall,
+      review: userInput.review,
       //currTime: userInput.currTime,
-      rating: userInput.rating
+      rating: userInput.rating,
+      username: props.currUser
     })
     .then(response => {
       console.log(response)
       if (response.data === "success") {
         console.log("Successful review submit")
       }
-      else if (response.data === "error") {
-        console.log("Error in review submit")
+      else if (response.data === "dining hall not found") {
+        console.log("Invalid dining hall")
+      }
+      else if (response.data === "user not checked in") {
+        console.log("User not checked in")
       }
     })
     .catch(error => {
@@ -41,6 +46,7 @@ function Review(props) {
   }
 
   return(
+    
     <div className="reviewpage">
       <form onSubmit={e => handleSubmit(e)} >
         <h3>Dining Hall</h3>
@@ -49,13 +55,13 @@ function Review(props) {
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
           required
         >
-          <option value="deneve">De Neve</option>
-          <option value="bplate">Bruin Plate</option>
-          <option value="epicuria">Epicuria</option>
-          <option value="thestudy">The Study</option>
-          <option value="bcafe">Bruin Cafe</option>
-          <option value="rendewest">Rendezvous West</option>
-          <option value="rendeeast">Rendezvous East</option>
+          <option value="De Neve">De Neve</option>
+          <option value="BPlate">Bruin Plate</option>
+          <option value="Epicuria">Epicuria</option>
+          <option value="TheStudy">The Study</option>
+          <option value="Bruin Cafe">Bruin Cafe</option>
+          <option value="Rendezvous West">Rendezvous West</option>
+          <option value="Rendezvous East">Rendezvous East</option>
         </select>
 
         {/* Changed this to be a drop-down instead of text*/}
