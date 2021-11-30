@@ -51,6 +51,16 @@ ul {
   padding: 20px;
 }
 
+.linkLookalike {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: medium;
+}
+
 
 
 
