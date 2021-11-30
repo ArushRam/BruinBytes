@@ -30,30 +30,70 @@ function MenuItem(props) {
 }
 
 function Menu(props) {
-  var data = props.data
-  var dishes = []
-  for (let i = 0; i < data.length; i++) {
-    dishes.push(
-      <MenuItem key={data[i].dishName} dishName={data[i].dishName} desc="Breaded and fried to perfection." calories={data[i].calories}/>
+  var data = []
+  for (let i = 0; i < props.data.length; i++) {
+    data.push(props.data[i])
+  }
+  const [dishes, setDishes] = useState(data)
+  console.log(dishes)
+  const [sortType, setSortType] = useState("alpha-asc")
+  useEffect(() => {
+    const sortArray = type => {
+      const sorted = [...data].sort((a, b) => {
+        switch(type) {
+          case "alpha-asc":
+            return (a.dishName > b.dishName) ? 1 : -1
+
+          case "alpha-desc":
+            return (a.dishName < b.dishName) ? 1 : -1
+
+          case "cal-asc":
+            return (a.calories > b.calories) ? 1 : -1
+
+          case "cal-desc":
+            return (a.calories < b.calories) ? 1 : -1
+        }
+      });
+      setDishes(sorted);
+    };
+    sortArray(sortType);
+    
+  }, [sortType]);
+
+  if (dishes.length > 0) {
+    return (
+      <div>
+        <label>Sort By:
+          <select className="Selectors" onChange={e => setSortType(e.target.value)}>
+            <option value="alpha-asc">Alphabetical (A-Z)</option>
+            <option value="alpha-desc">Alphabetical (Z-A)</option>
+            <option value="cal-asc">Calories (ascending)</option>
+            <option value="cal-desc">Calories (descending)</option>
+          </select>
+        </label>
+        {dishes.map(dish => (
+          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
+        ))}
+      </div>
     )
   }
-  const [sortOrder, setSortOrder] = useState("alpha-asc")
-  switch(sortOrder){
-    case "alpha-asc":
-      
-      break;
-
-    case "alpha-desc":
-      break;
+  else {
+    return (
+      <div>
+        <label>Sort By:
+          <select className="Selectors" onChange={e => setSortType(e.target.value)}>
+            <option value="alpha-asc">Alphabetical (A-Z)</option>
+            <option value="alpha-desc">Alphabetical (Z-A)</option>
+            <option value="cal-asc">Calories (ascending)</option>
+            <option value="cal-desc">Calories (descending)</option>
+          </select>
+        </label>
+        {data.map(dish => (
+          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
+        ))}
+      </div>
+    )
   }
-  console.log(data)
-
-  return(
-    <div>
-      <SearchSelector/>
-      {dishes}
-    </div>
-  )
 }
 
 // component for a generic review 
@@ -68,16 +108,6 @@ function Review(props) {
       <p>{props.content}</p>
     </div>
   );
-}
-
-function SearchSelector(props) {
-  return(
-    <label>Sort By:
-    <select name="Sort Selector" id="selector">
-      <option value="alpha-asc">Alphabetical (ascending)</option>
-      <option value="alpha-desc">Alphabetical (descending)</option>
-    </select> </label>
-  )
 }
 
 function DiningHallInfo(props) {
@@ -111,12 +141,6 @@ function DiningHallInfo(props) {
   useEffect(() => {
     getDiningHallData();
   }, []);
-  // Will import menu entries using server-side data
-  // Using hard-coded examples for now
-  var menu = [
-    <MenuItem key="Chicken Tenders" dishName="Chicken Tenders" desc="Breaded and fried to perfection." rating="5"/>,
-    <MenuItem key="Pizza" dishName="Pizza" desc="Delicious and made fresh." rating="3"/>
-  ]
 
   const dataToComment = Array.from(review).map((e) => {
     return(
@@ -171,14 +195,6 @@ function DiningHallInfo(props) {
       console.log("ERROR: " + error);
     });
     
-    /*
-    axios.post('/users/check', {in: true, diningHall: name})
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      console.log("ERROR: " + error)
-    }); */
   }
 
   function checkOut() {
@@ -206,22 +222,18 @@ function DiningHallInfo(props) {
     
   }
 
-
-  //console.log(document.getElementById("selector").value)
-
   return(
     <div className="dininghallinfo">
       <h1> {diningHallData.name} Menu for {today.toLocaleDateString()} </h1>
       
       <div>{errorMsg}</div>
       {!checkedIn && 
-        <button disable={!checkedIn} onClick={checkIn}>Check In</button>
+        <button className="Selectors" disable={!checkedIn} onClick={checkIn}>Check In</button>
       }  
       {checkedIn && 
-        <button disable={checkedIn} onClick={checkOut}>Check Out</button>
+        <button className="Selectors" disable={checkedIn} onClick={checkOut}>Check Out</button>
       }
-      {/* <SearchSelector/>
-      {menu} */}
+
       <Menu data={menuData}/>
       <h1>Reviews</h1>
       {dataToComment}

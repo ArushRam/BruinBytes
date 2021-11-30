@@ -1,5 +1,6 @@
 .MenuItem {
     list-style-type: none;
+    color: #1e4b87
 }
 
 .ItemDescription {
@@ -38,4 +39,8 @@ h4 {
 h3 {
     margin: 5px;
     margin-right: 0px;
+}
+
+.Selectors {
+    margin: 5px
 }
