@@ -34,7 +34,8 @@ function Menu(props) {
   for (let i = 0; i < props.data.length; i++) {
     data.push(props.data[i])
   }
-  const [dishes, setDishes] = useState([])
+  const [dishes, setDishes] = useState(data)
+  console.log(dishes)
   const [sortType, setSortType] = useState("alpha-asc")
   useEffect(() => {
     const sortArray = type => {
@@ -59,21 +60,40 @@ function Menu(props) {
     
   }, [sortType]);
 
-  return (
-    <div>
-      <label>Sort By:
-        <select onChange={e => setSortType(e.target.value)}>
-          <option value="alpha-asc">Alphabetical (A-Z)</option>
-          <option value="alpha-desc">Alphabetical (Z-A)</option>
-          <option value="cal-asc">Calories (ascending)</option>
-          <option value="cal-desc">Calories (descending)</option>
-        </select>
-      </label>
-      {dishes.map(dish => (
-        <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
-      ))}
-    </div>
-  )
+  if (dishes.length > 0) {
+    return (
+      <div>
+        <label>Sort By:
+          <select className="Selectors" onChange={e => setSortType(e.target.value)}>
+            <option value="alpha-asc">Alphabetical (A-Z)</option>
+            <option value="alpha-desc">Alphabetical (Z-A)</option>
+            <option value="cal-asc">Calories (ascending)</option>
+            <option value="cal-desc">Calories (descending)</option>
+          </select>
+        </label>
+        {dishes.map(dish => (
+          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
+        ))}
+      </div>
+    )
+  }
+  else {
+    return (
+      <div>
+        <label>Sort By:
+          <select className="Selectors" onChange={e => setSortType(e.target.value)}>
+            <option value="alpha-asc">Alphabetical (A-Z)</option>
+            <option value="alpha-desc">Alphabetical (Z-A)</option>
+            <option value="cal-asc">Calories (ascending)</option>
+            <option value="cal-desc">Calories (descending)</option>
+          </select>
+        </label>
+        {data.map(dish => (
+          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
+        ))}
+      </div>
+    )
+  }
 }
 
 // component for a generic review 
@@ -208,10 +228,10 @@ function DiningHallInfo(props) {
       
       <div>{errorMsg}</div>
       {!checkedIn && 
-        <button disable={!checkedIn} onClick={checkIn}>Check In</button>
+        <button className="Selectors" disable={!checkedIn} onClick={checkIn}>Check In</button>
       }  
       {checkedIn && 
-        <button disable={checkedIn} onClick={checkOut}>Check Out</button>
+        <button className="Selectors" disable={checkedIn} onClick={checkOut}>Check Out</button>
       }
 
       <Menu data={menuData}/>
