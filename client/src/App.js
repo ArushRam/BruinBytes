@@ -7,7 +7,7 @@ import DiningHallContainer from './components/DiningHallContainer';
 import DiningHallInfo from './components/DiningHallInfo';
 import ReviewPage from './components/ReviewPage';
 import SignupPage from './components/SignupPage';
-
+import SearchPage from './components/SearchPage';
 
 function PublicRoute(props) {
   // If NOT authorized, return an outlet that will render child elements
@@ -52,6 +52,7 @@ function App() {
             <Route path='/review' element={<ReviewPage currUser={userData}/>} />
           </Route>
           <Route path='/dininghall/:dininghall' element={<DiningHallInfo currUser={userData}/>} />
+          <Route path='/search' element={<SearchPage currUser={userData}/>} />
           <Route index element={<DiningHallContainer />}/>
           <Route /* for undefined routes */
             path="*"
