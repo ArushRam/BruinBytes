@@ -9,6 +9,18 @@ router.get('/', (req, res) => {
       .catch(err => res.status(400).json("error: " + err))
   });
 
+router.get('/getDishInfo', (req, res) => {
+    const dishName = req.body.dishName;
+    dishModel.findOne({name: dishName})
+        .then(result => {
+            if (result == null) {return res.status(400).json("no such dish")}
+            else {
+                res.json(result);
+            }
+        })
+        .catch(err => res.status(400).json("query error"))
+});
+
 router.get('/getHalls', (req, res) => {
     const dishName = req.body.dishName;
     dishModel.findOne({name: dishName})
@@ -26,7 +38,7 @@ router.get('/getHalls', (req, res) => {
                             }
                         })
                         .catch((err) => {
-                            return res.status(400).json("Database Error")
+                            return res.status(400).json("query error")
                         });
                     halls.push(hall);
                 }
