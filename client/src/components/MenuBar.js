@@ -7,6 +7,14 @@ import '../css/MenuBar.css';
 function MenuBar(props) {
   let reviewLink;
   let currUserName;
+  const [value, setValue] = useState(0); // integer state
+  const useForceUpdate = () => {
+    setValue(value => value + 1); // update the state to force render
+  }
+  useEffect(() => {
+    props.setUser(null);  // forces value to change, allowing to setUser
+  }, [value]);
+  
   if (props.currUser){
     reviewLink = 
     <Link to={{pathname: "/review", state: { currUser: props.currUser } }}
@@ -32,12 +40,10 @@ function MenuBar(props) {
           {!props.currUser && 
             <Link to="/signup">Sign up</Link>
           } | {" "}
-          {/* //React HATES this onClick function, fix later
+          {reviewLink} | {" "}
           {props.currUser && 
-            <Link to="/home" onClick={props.setUser(null)}>Logout</Link>
+            <button className="linkLookalike" onClick={useForceUpdate}>Logout</button>
           } 
-        */}
-          {reviewLink}
         </ul>
       </nav>
       <div className="welcome">{currUserName}</div>
