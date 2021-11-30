@@ -10,6 +10,8 @@ import Study from '../images/Study.jpg'
 import RendeWest from '../images/RendeWestUCLA.jpg'
 import RendeEast from '../images/RendeEastUCLA.jpg'
 
+var axios = require('axios');
+
 // api to get all dining hall data
 const endpoint = "http://localhost:5000/dininghall";
 // dict of name to images, terrible way of doing this but oh well...
@@ -50,20 +52,15 @@ function DiningHallContainer(props) {
   // state of dininghall data
   const [dininghallData, setDiningHallData] = useState(
     // template of api response, update later
-    {
-      "dininghall": "undefined",
-      "capacity": "undefined",
-      "rating": "undefined"
-    }
+    []
   );
 
 
-  const getDiningHallData = async () => {
-    const response = await fetch(endpoint);
-    const resJSON = await response.json();
-    setDiningHallData(resJSON);
-
-  }
+  const getDiningHallData = () => {
+    axios.get(endpoint).then(diningHalls => {
+      setDiningHallData(diningHalls.data);
+    });
+;  }
   // calls getDiningHallData() every rendering (defined as '[]'), maybe later add 5 sec counter
   useEffect(() => {
     getDiningHallData();
