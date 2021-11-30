@@ -58,7 +58,7 @@ function Review(props) {
           <option value="De Neve">De Neve</option>
           <option value="BPlate">Bruin Plate</option>
           <option value="Epicuria">Epicuria</option>
-          <option value="TheStudy">The Study</option>
+          <option value="The Study">The Study</option>
           <option value="Bruin Cafe">Bruin Cafe</option>
           <option value="Rendezvous West">Rendezvous West</option>
           <option value="Rendezvous East">Rendezvous East</option>
