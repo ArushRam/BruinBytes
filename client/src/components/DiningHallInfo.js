@@ -89,9 +89,27 @@ function DiningHallInfo(props) {
     )
   })
 
+  const checkIfCheckedIn = () => {
+    if (!props.currUser) { return; }
+    axios.get("/users/"+props.currUser)
+    .then(response => {
+      console.log(response);
+      const isChecked = ("currentDiningHall" in response.data && response.data.currentDiningHall !== "") ? true : false;
+      setCheckedIn(isChecked);
+      console.log(isChecked);
+    })
+    .catch(error => {
+      setErrorMsg("ERROR: " + error);
+    });
+  }
+
   const [checkedIn, setCheckedIn] = React.useState(false);
+  useEffect(() => {
+    checkIfCheckedIn();
+  }, []);
 
   function checkIn() {
+    checkIfCheckedIn();
     if (checkedIn) {
       setErrorMsg("Already checked-in");
       console.log("Already checked-in");
@@ -99,19 +117,20 @@ function DiningHallInfo(props) {
     }
     if (!props.currUser) {
       setErrorMsg("Must be signed-in to check-in");
-       console.log("Must be signed-in to check-in");
-       return;
+      console.log("Must be signed-in to check-in");
+      return;
     }
-    setCheckedIn(true);
     axios.patch("/dininghall/checkIn", {hallName: name, username: props.currUser})
     .then(response => {
       setErrorMsg("");
       console.log(response);
+      checkIfCheckedIn();
     })
     .catch(error => {
       setErrorMsg("ERROR: " + error);
       console.log("ERROR: " + error);
     });
+    
     /*
     axios.post('/users/check', {in: true, diningHall: name})
     .then(response => {
@@ -122,11 +141,41 @@ function DiningHallInfo(props) {
     }); */
   }
 
+  function checkOut() {
+    checkIfCheckedIn();
+    if (!checkedIn) {
+      setErrorMsg("Not checked-in");
+      console.log("Not checked-in");
+      return;
+    }
+    if (!props.currUser) {
+      setErrorMsg("Must be signed-in to check-out");
+       console.log("Must be signed-in to check-out");
+       return;
+    }
+    axios.patch("/dininghall/checkOut", {hallName: name, username: props.currUser})
+    .then(response => {
+      setErrorMsg("");
+      console.log(response);
+      checkIfCheckedIn();
+    })
+    .catch(error => {
+      setErrorMsg("ERROR: " + error);
+      console.log("ERROR: " + error);
+    });
+    
+  }
+
   return(
     <div className="dininghallinfo">
       <h1> {diningHallData.name} Menu for {today.toLocaleDateString()} </h1>
       <div>{errorMsg}</div>
-      <button disable={!checkedIn} onClick={checkIn}>Check In</button>
+      {!checkedIn && 
+        <button disable={!checkedIn} onClick={checkIn}>Check In</button>
+      }  
+      {checkedIn && 
+        <button disable={checkedIn} onClick={checkOut}>Check Out</button>
+      }
       {menu}
       <h1>Reviews</h1>
       {dataToComment}

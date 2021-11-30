@@ -73,15 +73,52 @@ router.route('/checkIn')
         .then(user => {
           if (user == null) {return res.json("user error");}
           else {
+            if ("currentDiningHall" in user && user.currentDiningHall !== "") {return res.json("User is already checked in")}
             user.currentDiningHall = hallName;
             user.save();
             result.population += 1;
             result.save()
-            res.json(result);
+            res.json("Checked in!");
           }
         })
         .catch(error => res.status(400).send(err))
       }
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    })
+});
+
+router.route('/checkOut')
+.patch((req, res) => {
+  const hallName = req.body.hallName;
+  const username = req.body.username;
+
+  hallModel.findOne({name: hallName})
+    .then(result => {
+      if (result == null) {
+        res.send("dining hall not found")
+      }
+      else {
+        User.findOne({username: username})
+        .then(user => {
+          if (user == null) {return res.json("user error");}
+          else {
+            if (user.currentDiningHall == "") {return res.json("user not checked in");}
+            user.currentDiningHall = "";
+            user.save();
+            result.population -= 1;
+            result.save()
+              .then(() => {
+                res.json("Checked Out!");
+              })
+              .catch((err) => {
+                res.json("error");
+              });
+          }
+        })
+        .catch(error => res.status(400).send(err))
+      };
     })
     .catch(err => {
       res.status(400).send(err);

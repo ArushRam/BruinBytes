@@ -10,6 +10,17 @@ router.get('/', function(req, res) {
     .catch(err => res.status(400).json('Error: ' + err))
 });
 
+router.get('/:user', function(req, res) {
+  User.findOne({username: req.params.user}).then(async user => {
+    if (user == null) {
+      return res.json("username error");
+    }
+    else {
+      res.json(user);
+    }}).catch(err => res.status(400).json('Error: ' + err))
+  });
+
+
 // handle sign up
 router.route('/addUser').post(async (req, res) => {
   const username = req.body.username;
