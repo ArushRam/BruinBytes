@@ -20,6 +20,10 @@ router.route('/addReview').post((req, res) => {
   hallModel.findOne({name: hallName})
     .then(result => {
       if (result == null) {
+        console.log("Hall name is " + hallName)
+        console.log("Rating is " + rating)
+        console.log("Review is " + review)
+        console.log("username is " + username)
         res.send("dining hall not found")
       }
       else {
