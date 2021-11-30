@@ -7,6 +7,7 @@ var axios = require('axios');
 // Functional component representing a menu item (dish) 
 function MenuItem(props) {
   const dishName = props.dishName
+  const calories = props.calories
   const rating = props.rating
   const desc = props.desc
   const [showingPopUp, setShowingPopUp] = useState(false)
@@ -21,10 +22,37 @@ function MenuItem(props) {
       {showingPopUp && (
         <div className  ="ItemDescription" >
           <h3>"<i>{desc}</i>"</h3>
-          <h3>Rating: {rating}/5</h3>
+          <h3>Calories: {calories}</h3>
         </div>
       )}
     </li>
+  )
+}
+
+function Menu(props) {
+  var data = props.data
+  var dishes = []
+  for (let i = 0; i < data.length; i++) {
+    dishes.push(
+      <MenuItem key={data[i].dishName} dishName={data[i].dishName} desc="Breaded and fried to perfection." calories={data[i].calories}/>
+    )
+  }
+  const [sortOrder, setSortOrder] = useState("alpha-asc")
+  switch(sortOrder){
+    case "alpha-asc":
+      
+      break;
+
+    case "alpha-desc":
+      break;
+  }
+  console.log(data)
+
+  return(
+    <div>
+      <SearchSelector/>
+      {dishes}
+    </div>
   )
 }
 
@@ -42,6 +70,16 @@ function Review(props) {
   );
 }
 
+function SearchSelector(props) {
+  return(
+    <label>Sort By:
+    <select name="Sort Selector" id="selector">
+      <option value="alpha-asc">Alphabetical (ascending)</option>
+      <option value="alpha-desc">Alphabetical (descending)</option>
+    </select> </label>
+  )
+}
+
 function DiningHallInfo(props) {
   const today = new Date();
   const path = useLocation().pathname;
@@ -57,6 +95,7 @@ function DiningHallInfo(props) {
     "_id": "undefined"
   })
 
+  const [menuData, setMenuData] = useState({});
   
 
   const getDiningHallData = async () => {
@@ -66,6 +105,7 @@ function DiningHallInfo(props) {
     console.log(resJSON);
     setReview(jsonReviews.reviews);
     setData(jsonReviews)
+    setMenuData(jsonReviews.menu)
   }
 
   useEffect(() => {
@@ -166,9 +206,13 @@ function DiningHallInfo(props) {
     
   }
 
+
+  //console.log(document.getElementById("selector").value)
+
   return(
     <div className="dininghallinfo">
       <h1> {diningHallData.name} Menu for {today.toLocaleDateString()} </h1>
+      
       <div>{errorMsg}</div>
       {!checkedIn && 
         <button disable={!checkedIn} onClick={checkIn}>Check In</button>
@@ -176,7 +220,9 @@ function DiningHallInfo(props) {
       {checkedIn && 
         <button disable={checkedIn} onClick={checkOut}>Check Out</button>
       }
-      {menu}
+      {/* <SearchSelector/>
+      {menu} */}
+      <Menu data={menuData}/>
       <h1>Reviews</h1>
       {dataToComment}
     </div>
