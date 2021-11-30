@@ -47,12 +47,7 @@ function DiningHallInfo(props) {
   const name = path.substring(path.lastIndexOf("/") + 1).replace("%20", " ")
   const reviewEndpoint = "http://localhost:5000/dininghall/"+name;
 
-  const [review, setReview] = useState({
-    "user": "undefined",
-    "rating": "undefined",
-    "timestamp": "undefined",
-    "content": "undefined"
-  });
+  const [review, setReview] = useState({});
 
   const [diningHallData, setData] = useState({
     "name": "undefined",
@@ -61,11 +56,11 @@ function DiningHallInfo(props) {
   })
 
   const getDiningHallData = async () => {
-    const response = await fetch("http://localhost:3000/dininghall/"+name);
+    const response = await fetch(reviewEndpoint);
     const resJSON = await response.json();
     const jsonReviews = resJSON;
     console.log(resJSON);
-    setReview(jsonReviews);
+    setReview(jsonReviews.reviews);
     setData(jsonReviews)
   }
 
@@ -84,7 +79,7 @@ function DiningHallInfo(props) {
       <Review 
         username={e.username}
         rating={e.rating}
-        content={e.content}
+        content={e.body}
       />
     )
   })

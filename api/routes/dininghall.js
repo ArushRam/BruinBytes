@@ -16,6 +16,7 @@ router.route('/addReview').post((req, res) => {
   const rating = req.body.rating;
   const review = req.body.review;
   const username = req.body.username;
+  const currTime = req.body.currTime;
 
   hallModel.findOne({name: hallName})
     .then(result => {
@@ -38,7 +39,7 @@ router.route('/addReview').post((req, res) => {
             result.numRatings += 1;
             result.population -= 1;
             if (review != "") {
-              result.reviews.push(review);
+              result.reviews.push({username: username, rating: rating, time: "00:00 PM", body: review});
             }
             result.save()
               .then(() => {

@@ -11,7 +11,8 @@ function Review(props) {
       dininghall: "De Neve",
       review: "",
       rating: "",
-      username: null
+      username: null,
+      currTime: "00:00 PM"
     }
   );
 
@@ -22,7 +23,7 @@ function Review(props) {
     axios.post('/dininghall/addReview', {
       hallName: userInput.dininghall,
       review: userInput.review,
-      //currTime: userInput.currTime,
+      currTime: userInput.currTime,
       rating: userInput.rating,
       username: props.currUser
     })
