@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dininghallsRouter = require('./routes/dininghall');
 var reviewRouter = require('./routes/review');
+var dishRouter = require('./routes/dishes');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dininghall', dininghallsRouter);
 app.use('/review', reviewRouter);
+app.use('/dishes', dishRouter);
 
 
 app.listen(process.env.PORT || 5000);
