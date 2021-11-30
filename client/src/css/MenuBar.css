@@ -4,10 +4,9 @@
   height: 50%;
   display: flex;
   flex-direction: row;
-  background-color: lightskyblue;
+  background-color: lightsteelblue;
   background-size: 100%;
   position: relative;
-  /*border-radius: 0 0 20px 20px;*/
   box-shadow: 5px 10px black;
   border: 2px solid black;
   color: white;
@@ -17,6 +16,7 @@
 
 .searchBar{
 
+  font-family: 'VT323', monospace;
   text-align: right;
   position: relative;
 
@@ -31,21 +31,24 @@
 }
 
 ul {
+  font-family: 'VT323', monospace;
   list-style-type: none;
   margin: 0;
   padding: 5px;
-  background-color: lightskyblue;
+  background-color: lightsteelblue;
   color: black;
 }
 
 .title{
-  padding-left: 10px;
-  padding-right: 10px;
+  font-family: 'VT323', monospace;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .welcome{
+  font-family: 'VT323', monospace;
   margin-left: auto;
-  padding: 10px;
+  padding: 20px;
 }
 
 

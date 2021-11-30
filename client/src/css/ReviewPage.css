@@ -1,12 +1,20 @@
 .reviewpage {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+  font-family: 'VT323', monospace;
+  background-repeat: no-repeat;
+	background-color: white;
+	background-position: center bottom;
+	background-attachment: fixed;
+	margin-top: 100px;
+	border-radius: 20px;
 }
 
 .reviewbox {
-  width: 500px;
-  height: 100px;
+    background: white;
+		border: 2px solid rgb(85, 126, 151);  
+		height: 175px;
+		width: 500px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 form {

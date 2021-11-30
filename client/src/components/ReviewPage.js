@@ -95,7 +95,7 @@ function Review(props) {
         <textarea
           onChange={e => setUserInput({...userInput, review: e.target.value})}
           className="reviewbox"
-          placeholder="Enter your review here"
+          placeholder="Enter your review here."
         />
         <input type='submit'/>
       </form>

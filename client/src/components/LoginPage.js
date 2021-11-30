@@ -45,7 +45,7 @@ function LoginPage(props) {
 
   return (
     <div className="loginpage">
-      <h1>Log in</h1>
+      <h1>Login</h1>
       <p>{errMsg}</p>
       <form onSubmit={e => handleSubmit(e)} >
         <h2>Username: </h2>
@@ -64,7 +64,7 @@ function LoginPage(props) {
           required
         />
 
-        <button type="submit" className="loginButton">Log in</button>
+        <button type="submit" className="loginButton">Login</button>
       </form>
       <Link to="/signup">No account? Sign up here.</Link>
     </div>
