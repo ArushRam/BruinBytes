@@ -7,8 +7,8 @@ let User = require('../models/user.model');
 /* get all dininghall data */
 router.get('/', function(req, res) {
   hallModel.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json("error"))
+    .then(halls => {res.json(halls); console.log(halls);})
+    .catch(err => res.status(400).json("error: " + err))
 });
 
 router.route('/addReview').post((req, res) => {
