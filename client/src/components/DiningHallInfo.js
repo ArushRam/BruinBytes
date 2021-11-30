@@ -33,10 +33,10 @@ function Review(props) {
   return (
     <div className="Comment">
       <div className="Toprow">
-        <h3>{props.username}</h3>
-        <h3>Rating: {props.rating}</h3>
-        <h3>{props.time}</h3>
+        <h3>{props.username}&nbsp;</h3>
+        <h3>at {props.time}:</h3>
       </div>
+      <h4>Rating: {props.rating}</h4>
       <p>{props.content}</p>
     </div>
   );
@@ -80,10 +80,10 @@ function DiningHallInfo(props) {
   const dataToComment = Array.from(review).map((e) => {
     return(
       <Review 
-        username={e.username}
-        rating={e.rating}
-        time={e.time}
-        content={e.body}
+        username={e.username + " "}
+        rating={e.rating + " "}
+        time={e.time + " "}
+        content={e.body + " "}
       />
     )
   })
