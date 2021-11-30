@@ -8,7 +8,7 @@ const dishSchema = new Schema ({
     },
     halls: [{type: Schema.Types.ObjectID, ref: 'DiningHall'}],
     calories: {type: Number, immutable: true},
-    vegan: {type: Boolean, immutable: true}
+    tags: {type: [String], immutable: true}
 });
 
 const Dish = mongoose.model('Dish', dishSchema);
