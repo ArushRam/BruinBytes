@@ -10,11 +10,12 @@
 
 .reviewbox {
     background: white;
-		border: 2px solid rgb(85, 126, 151);  
+		border: 2px solid rgb(153, 157, 161);    
 		height: 175px;
 		width: 500px;
     padding: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: 6px 7px black;
 }
 
 form {
