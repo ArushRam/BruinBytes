@@ -16,6 +16,7 @@ function Review(props) {
       currTime: "00:00 PM"
     }
   );
+  const [errorMsg, setErrorMsg] = useState("");
 
   const getLocalTime = () => {
     const today = new Date();
@@ -41,21 +42,25 @@ function Review(props) {
     })
     .then(response => {
       console.log(response)
-      if (response.data === "success") {
-        console.log("Successful review submit")
-      }
-      else if (response.data === "dining hall not found") {
-        console.log("Invalid dining hall")
+      
+      if (response.data === "dining hall not found") {
+        console.log("Invalid dining hall");
+        setErrorMsg("Invalid dining hall");
       }
       else if (response.data === "user not checked in") {
-        console.log("User not checked in")
+        console.log("User not checked in");
+        setErrorMsg("You must be checked in at a dining hall!");
+      }
+      else {
+        console.log("Successful review submit");
+        setErrorMsg("Submitted!");
       }
     })
     .catch(error => {
       console.log("Error: " + error)
     });
 
-    setUserInput({dininghall: "", review: "", rating: 0})
+    setUserInput({dininghall: "", review: "", rating: 0});
   }
 
   return(
@@ -68,7 +73,7 @@ function Review(props) {
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
           required
         >
-          <option value="De Neve">De Neve</option>
+          <option value="De Neve" selected>De Neve</option>
           <option value="BPlate">Bruin Plate</option>
           <option value="Epicuria">Epicuria</option>
           <option value="The Study">The Study</option>
@@ -84,7 +89,7 @@ function Review(props) {
           onChange={e => setUserInput({...userInput, rating: e.target.value})}
           required
         >
-          <option value="1">1</option>
+          <option value="1" selected>1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -97,6 +102,7 @@ function Review(props) {
           className="reviewbox"
           placeholder="Enter your review here"
         />
+        {errorMsg}
         <input type='submit'/>
       </form>
     </div>
