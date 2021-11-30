@@ -33,7 +33,7 @@ function Review(props) {
   return (
     <div className="Comment">
       <div className="Toprow">
-        <h3>{props.username}&nbsp;</h3>
+        <h3>{props.username}</h3>
         <h3>at {props.time}:</h3>
       </div>
       <h4>Rating: {props.rating}</h4>
@@ -48,8 +48,9 @@ function DiningHallInfo(props) {
   const name = path.substring(path.lastIndexOf("/") + 1).replace("%20", " ");
   const reviewEndpoint = "http://localhost:5000/dininghall/"+name;
 
-  const [review, setReview] = useState({});
 
+  const [review, setReview] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
   const [diningHallData, setData] = useState({
     "name": "undefined",
     "population": "undefined",
@@ -92,20 +93,24 @@ function DiningHallInfo(props) {
 
   function checkIn() {
     if (checkedIn) {
-      console.log("Already checked-in")
-      return
+      setErrorMsg("Already checked-in");
+      console.log("Already checked-in");
+      return;
     }
     if (!props.currUser) {
-       console.log("Must be signed-in to check-in")
-       return
+      setErrorMsg("Must be signed-in to check-in");
+       console.log("Must be signed-in to check-in");
+       return;
     }
-    setCheckedIn(true)
+    setCheckedIn(true);
     axios.patch("/dininghall/checkIn", {hallName: name, username: props.currUser})
     .then(response => {
+      setErrorMsg("");
       console.log(response);
     })
     .catch(error => {
-      console.log("ERROR: " + error)
+      setErrorMsg("ERROR: " + error);
+      console.log("ERROR: " + error);
     });
     /*
     axios.post('/users/check', {in: true, diningHall: name})
@@ -120,6 +125,7 @@ function DiningHallInfo(props) {
   return(
     <div className="dininghallinfo">
       <h1> {diningHallData.name} Menu for {today.toLocaleDateString()} </h1>
+      <div>{errorMsg}</div>
       <button disable={!checkedIn} onClick={checkIn}>Check In</button>
       {menu}
       <h1>Reviews</h1>
