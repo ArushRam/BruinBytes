@@ -35,6 +35,7 @@ function Review(props) {
       <div className="Toprow">
         <h3>{props.username}</h3>
         <h3>Rating: {props.rating}</h3>
+        <h3>{props.time}</h3>
       </div>
       <p>{props.content}</p>
     </div>
@@ -42,9 +43,9 @@ function Review(props) {
 }
 
 function DiningHallInfo(props) {
-  const today = new Date()
-  const path = useLocation().pathname
-  const name = path.substring(path.lastIndexOf("/") + 1).replace("%20", " ")
+  const today = new Date();
+  const path = useLocation().pathname;
+  const name = path.substring(path.lastIndexOf("/") + 1).replace("%20", " ");
   const reviewEndpoint = "http://localhost:5000/dininghall/"+name;
 
   const [review, setReview] = useState({});
@@ -54,6 +55,8 @@ function DiningHallInfo(props) {
     "population": "undefined",
     "_id": "undefined"
   })
+
+  
 
   const getDiningHallData = async () => {
     const response = await fetch(reviewEndpoint);
@@ -79,6 +82,7 @@ function DiningHallInfo(props) {
       <Review 
         username={e.username}
         rating={e.rating}
+        time={e.time}
         content={e.body}
       />
     )

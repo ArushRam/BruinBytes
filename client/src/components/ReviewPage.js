@@ -6,6 +6,7 @@ var axios = require('axios');
 
 function Review(props) {
   // object containing parts of the user review
+  
   const [userInput, setUserInput] = useState(
     {
       dininghall: "De Neve",
@@ -16,14 +17,25 @@ function Review(props) {
     }
   );
 
+  const getLocalTime = () => {
+    const today = new Date();
+    const time = today.getTime();
+    const localOffset = today.getTimezoneOffset() * 60000;
+    const utc = time + localOffset;
+    const LA = utc + (3600000*-8)
+    const nd = new Date(LA);
+    console.log("LA time now: "+nd.toLocaleTimeString());
+    return nd.toLocaleTimeString();
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const currTime = getLocalTime();
     // send POST request to the backend
     axios.post('/dininghall/addReview', {
       hallName: userInput.dininghall,
       review: userInput.review,
-      currTime: userInput.currTime,
+      currTime: currTime,
       rating: userInput.rating,
       username: props.currUser
     })
