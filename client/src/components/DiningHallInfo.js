@@ -80,10 +80,10 @@ function DiningHallInfo(props) {
   const dataToComment = Array.from(review).map((e) => {
     return(
       <Review 
-        username={e.username + " "}
-        rating={e.rating + " "}
-        time={e.time + " "}
-        content={e.body + " "}
+        username={e.username}
+        rating={e.rating}
+        time={e.time}
+        content={e.body}
       />
     )
   })
