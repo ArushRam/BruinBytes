@@ -45,7 +45,7 @@ function SignupPage(props) {
 
   return (
     <div className="signuppage">
-      <h1>Sign up</h1>
+      <h1>Sign Up</h1>
       <p>{errMsg}</p>
       <form onSubmit={e => handleSubmit(e)} >
         <h2>Username: </h2>
@@ -64,7 +64,7 @@ function SignupPage(props) {
             required
         />
 
-        <button type="submit" className="signupButton">Sign up</button>
+        <button type="submit" className="signupButton">Sign Up</button>
     </form>
     <Link to="/login">Already have an account? Log in here.</Link>
     </div>
