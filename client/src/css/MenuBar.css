@@ -38,13 +38,14 @@ ul {
   color: black;
 }
 
-.profileButton{
-  position: relative;
-  padding: 5px;
+.title{
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .welcome{
   margin-left: auto;
+  padding: 10px;
 }
 
 

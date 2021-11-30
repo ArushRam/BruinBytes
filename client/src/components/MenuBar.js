@@ -22,7 +22,7 @@ function MenuBar(props) {
   }
   return (
     <div className="menubar">
-      <h2> Menu Bar </h2>
+      <h2 className="title"> Menu Bar </h2>
       <nav>
         <ul>
           <Link to="/home">Home</Link> |{" "}
