@@ -29,8 +29,8 @@ function LoginPage(props) {
       }
       else if (response.statusText === "OK") {
         setErrMsg("");
+        props.setUser(response.data);
         console.log("Logged in successfully")
-        props.setUser(response.data.username);    
       }
       
     })
