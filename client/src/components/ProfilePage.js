@@ -62,10 +62,11 @@ function Profile (props) {
                 <br></br>
                 <input
                     type="text"
+                    className="profilefont"
                     onChange={e => setUserInput({...userInput, favFood: e.target.value})}
-                    placeholder="Set favorite food"
+                    placeholder="Set favorite food."
                 />
-                <input type='submit'/>
+                <input type='submit' class='profileButton'/>
             </form>
         </div>
     )

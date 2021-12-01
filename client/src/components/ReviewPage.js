@@ -105,7 +105,7 @@ function Review(props) {
           placeholder="Enter your review here."
         />
         {errorMsg}
-        <input type='submit'/>
+        <input type='submit' class='reviewButton'/>
       </form>
     </div>
   );

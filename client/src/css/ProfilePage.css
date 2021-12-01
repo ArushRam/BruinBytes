@@ -1,10 +1,24 @@
 /* add better styling later */
-.profilepage {
-    font-family: 'VT323', monospace;
-    background-repeat: no-repeat;
-      background-color: white;
-      background-position: center bottom;
-      background-attachment: fixed;
-      margin-top: 100px;
-      border-radius: 20px;
+.favFoodDisplay {
+  font-family: 'VT323', monospace;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: center bottom;
+  background-attachment: fixed;
+  margin-top: 100px;
+  border-radius: 20px;
+}
+.profileButton {
+  font-family: 'VT323', monospace;
+  background-color: rgb(238, 162, 20);
+  color: white;
+  border-color: rgb(188, 221, 40);
+  padding: 5px 12px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.profilefont {
+  font-family: 'VT323', monospace;
 }
