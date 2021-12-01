@@ -57,16 +57,18 @@ function Search(props) {
             <div>
                 <h2>Search for a dish!</h2>
                 <form onSubmit={e => handleSubmit(e)}>
-                    <label htmlFor="header-search">
-                        <span className="visually-hidden"></span>
-                    </label>
-                    <input
-                        type = "text"
-                        id = "header-search"
-                        placeholder = "Enter dish name"
-                        onChange = {e => handleChange(e)}
-                    />
-                    <button type='submit'>Search</button>
+                    <div className="row-allign">
+                        <label htmlFor="header-search">
+                            <span className="visually-hidden"></span>
+                        </label>
+                        <input
+                            type = "text"
+                            id = "header-search"
+                            placeholder = "Enter dish name"
+                            onChange = {e => handleChange(e)}
+                        />
+                        <button type='submit'>Search</button>
+                    </div>
                 </form>
             </div>
             <div>
