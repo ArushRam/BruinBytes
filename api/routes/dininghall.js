@@ -130,7 +130,7 @@ router.route('/addDishToMenu')
   const hallName = req.body.hallName;
   const dishName = req.body.dishName;
   const calories = req.body.calories;
-  const vegan = req.body.vegan;
+  const tags = req.body.tags;
 
   hallModel.findOne({name: hallName})
     .then(hall => {
@@ -139,10 +139,10 @@ router.route('/addDishToMenu')
         dishModel.findOne({name: dishName})
           .then(dish => {
             if (dish == null) {
-              const newDish = new dishModel({name: dishName, calories: calories, vegan: vegan, halls: [hall._id]});
+              const newDish = new dishModel({name: dishName, calories: calories, tags: tags, halls: [hall._id]});
               newDish.save()
                 .then(() => {
-                  hall.menu.push(newDish._id);
+                  hall.menu.push({dishName: dishName, calories: calories, tags: tags});
                   hall.save();
                   res.json(newDish);
                 })

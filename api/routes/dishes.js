@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       .catch(err => res.status(400).json("error: " + err))
   });
 
-router.get('/getDishInfo', (req, res) => {
+router.post('/getDishInfo', (req, res) => {
     const dishName = req.body.dishName;
     dishModel.findOne({name: dishName})
         .then(result => {
@@ -21,7 +21,7 @@ router.get('/getDishInfo', (req, res) => {
         .catch(err => res.status(400).json("query error"))
 });
 
-router.get('/getHalls', (req, res) => {
+router.post('/getHalls', (req, res) => {
     const dishName = req.body.dishName;
     dishModel.findOne({name: dishName})
         .then(async dish => {
@@ -46,7 +46,7 @@ router.get('/getHalls', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(400).json("Error: " + err);
+            res.status(400).json(err);
         })
 })
 

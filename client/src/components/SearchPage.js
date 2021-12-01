@@ -13,6 +13,7 @@ function searchCard(props) {
 }
 
 function searchList(props) {
+    console.log("yo!");
     const filtered = props.filteredHalls.map(hall => <searchCard key={hall._id} hall={hall}/>)
     console.log(props.filteredHalls)
     return (
@@ -24,42 +25,68 @@ function searchList(props) {
 
 function Search(props) {
     const [searchDish, setSearchDish] = useState("");
-    var halls = []
-    axios.post('http://localhost:5000/dishes/getHalls', {name: searchDish})
-        .then(res => {halls = res.data; console.log(res.data)});
+    const [halls, setHalls] = useState([]);
+    const [message, setMessage] = useState("");
 
-    //const dish = axios.get('http://localhost:5000/dishes/getDishInfo', {dishName: searchDish});
-
-    const resultList = () => {
-        return(
-            <searchList filteredHalls={halls}/>
-        )
-    };
-
-   const handleChange = e => {
+    const handleChange = e => {
         setSearchDish(e.target.value);
-        //const halls = axios.get('http://localhost:5000/dishes/getHalls', {dishName: searchDish});
-
     };
 
-    /*
     const handleSubmit = e => {
         e.preventDefault();
 
-    }*/
+        axios.post('http://localhost:5000/dishes/getHalls', {dishName: searchDish})
+        .then(res => {
+            if (res.data.length == 0) {
+                setMessage("No halls are serving this dish")
+            } 
+            else {
+                setHalls(res.data);
+                setMessage("Available at:")
+            }
+        })
+        .catch(error => {
+            console.log("Error: " + error)
+        })
+
+        setSearchDish("");
+    };
 
     return (
         <div>
             <div>
-                <h2> Search for a dish!</h2>
-                <input
-                    type = "search"
-                    placeholder = "dish name"
-                    onChange = {handleChange}
-                />
+                <h2>Search for a dish!</h2>
+                <form onSubmit={e => handleSubmit(e)}>
+                    <label htmlFor="header-search">
+                        <span className="visually-hidden"></span>
+                    </label>
+                    <input
+                        type = "text"
+                        id = "header-search"
+                        placeholder = "Enter dish name"
+                        onChange = {e => handleChange(e)}
+                    />
+                    <button type='submit'>Search</button>
+                </form>
             </div>
             <div>
-                {resultList()}
+                <div>
+                    <br/>
+                    <h4>{message}</h4>
+                </div>
+                <br/>
+                <div>
+                    {halls.map(hall => {
+                        return(
+                            <div>
+                                <h4>{hall.name}</h4>
+                                <p>Rating: {Number.parseFloat(hall.rating).toFixed(1)}/5.0</p>
+                                <p>At {Math.round(hall.population/hall.capacity * 100)}% capacity</p>
+                                <br/>
+                            </div>
+                        )}
+                    )}
+                </div>
             </div>
         </div>
     );

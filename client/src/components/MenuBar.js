@@ -40,7 +40,8 @@ function MenuBar(props) {
           {!props.currUser && 
             <Link to="/signup">Sign Up</Link>
           } | {" "}
-          {reviewLink} | {" "}
+          {reviewLink} | {" "} 
+          {<Link to ="/search">Search Dishes</Link>}
           {props.currUser && 
             <button className="linkLookalike" onClick={useForceUpdate}>Logout</button>
           } 
