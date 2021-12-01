@@ -68,7 +68,15 @@ function Search(props) {
                     <div>
                         <h4>{dish.name}</h4>
                         <p><b>Calories:</b> {dish.calories} kCal</p>
-                        {dish.tags.map(tag => {return(<div><i>{tag} </i></div>)})}
+                        <b>Contains: </b>
+                        {dish.tags.map((tag, index) => {
+                            return(
+                                <span><i>
+                                    {tag}
+                                    {index != dish.tags.length - 1 && <span>, </span>}
+                                </i></span>
+                            )
+                        })}
                     </div>
                     }
                 <br />
@@ -79,11 +87,10 @@ function Search(props) {
                 <div>
                     {halls.map(hall => {
                         return(
-                            <div><button>
+                            <div><button className='hallCard'>
                                 <h4>{hall.name}</h4>
                                 <p>Rating: {Number.parseFloat(hall.rating).toFixed(1)}/5.0</p>
                                 <p>At {Math.round(hall.population/hall.capacity * 100)}% capacity</p>
-                                <br/>
                             </button></div>
                         )}
                     )}

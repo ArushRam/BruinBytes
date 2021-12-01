@@ -129,8 +129,6 @@ router.route('/addDishToMenu')
 .post((req, res) => {
   const hallName = req.body.hallName;
   const dishName = req.body.dishName;
-  const calories = req.body.calories;
-  const tags = req.body.tags;
 
   hallModel.findOne({name: hallName})
     .then(hall => {
@@ -139,6 +137,8 @@ router.route('/addDishToMenu')
         dishModel.findOne({name: dishName})
           .then(dish => {
             if (dish == null) {
+              const calories = req.body.calories;
+              const tags = req.body.tags;
               const newDish = new dishModel({name: dishName, calories: calories, tags: tags, halls: [hall._id]});
               newDish.save()
                 .then(() => {
@@ -149,13 +149,13 @@ router.route('/addDishToMenu')
                 .catch((err) => res.status(400).json("Error: " + err));
             }
             else {
-              dish.calories = calories;
-              dish.vegan = vegan;
+              if (dish.halls.includes(hall._id)) {return res.json("already in menu")}
               dish.halls.push(hall._id);
               dish.save()
                 .then(() => {
-                  hall.menu.push(dish._id);
+                  hall.menu.push({dishName: dishName, calories: dish.calories, tags: dish.tags});
                   hall.save();
+                  res.json(dish);
                 })
                 .catch((err) => res.status(400).json("Error: " + err))
             }
