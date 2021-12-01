@@ -6,6 +6,7 @@ import '../css/MenuBar.css';
 
 function MenuBar(props) {
   let reviewLink;
+  let profileLink;
   let currUserName;
   const [value, setValue] = useState(0); // integer state
   const useForceUpdate = () => {
@@ -20,11 +21,15 @@ function MenuBar(props) {
     <Link to={{pathname: "/review", state: { currUser: props.currUser } }}
     >Write a Review</Link>;
 
+    profileLink =
+    <Link to={{pathname: "/profile", state: { currUser: props.currUser } }}
+    >Profile</Link>;
+
     currUserName = <h3>Welcome, {props.currUser}!</h3>;
   } else {
     reviewLink = 
     <Link to={{pathname: "/login", state: { currUser: props.currUser } }}
-    >Write a Review</Link>;
+    ></Link>;
 
     currUserName = <p></p>;
   }
@@ -40,6 +45,7 @@ function MenuBar(props) {
           {!props.currUser && 
             <Link to="/signup">Sign Up</Link>
           }  {" "} 
+          {profileLink} {" "}
           {reviewLink}  {" "}
           {<Link to ="/search">Search Dishes</Link>}
              {" "}

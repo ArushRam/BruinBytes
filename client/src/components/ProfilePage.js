@@ -12,12 +12,12 @@ function Profile (props) {
     // GET info about current user
     axios.get("/users/" + props.currUser)
     .then(response => {
-        // console.log(response); // for some reason this prints like seven times
+        console.log(response.data.favoriteDish); // for some reason this prints like seven times
         // get favFood
         setFavFood(response.data.favoriteDish)
     })
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         console.log("userInput is " + userInput)
@@ -25,7 +25,7 @@ function Profile (props) {
             return;
         }
 
-        axios.post('/users/editFavFood', {
+        await axios.post('/users/editFavFood', {
             username: props.currUser,
             favFood: userInput.favFood
         })
@@ -36,14 +36,18 @@ function Profile (props) {
                 console.log("User not found")
                 setErrorMsg("User not found");
             }
-            else if (response.data.favoriteDish === userInput.favFood) {
+            else {
                 console.log("Successfully set favorite food")
                 setErrorMsg("");
             }
-            else {
-                console.log("Unknown error")
-                setErrorMsg("Unknown error");
-            }
+
+            // GET info about current user
+            axios.get("/users/" + props.currUser)
+            .then(response => {
+                console.log(response.data.favoriteDish); // for some reason this prints like seven times
+                // get favFood
+                setFavFood(response.data.favoriteDish)
+            })
         })
     }
 
