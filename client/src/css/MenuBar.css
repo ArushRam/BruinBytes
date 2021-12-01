@@ -14,22 +14,6 @@
   
 }
 
-.searchBar{
-
-  font-family: 'VT323', monospace;
-  text-align: right;
-  position: relative;
-
-}
-
-.searchButton{
-
-  background-position: center;
-  background-size: 90%;
-  position: relative;
-  border: 2px black;
-}
-
 ul {
   font-family: 'VT323', monospace;
   list-style-type: none;

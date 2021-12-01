@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import '../css/SearchPage.css'
 var axios = require('axios');
 
@@ -13,6 +14,8 @@ function Search(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
+
+        if (searchString = "") return;
 
         axios.post('http://localhost:5000/dishes/getDishes', {dishName: searchString})
         .then(dishes => {
@@ -32,7 +35,7 @@ function Search(props) {
 
     return (
         <div>
-            <div>
+            <div className="searchpage">
                 <h2>Search for a dish!</h2>
                 <form onSubmit={e => handleSubmit(e)}>
                     <input
@@ -40,7 +43,7 @@ function Search(props) {
                         placeholder = "Enter dish name"
                         onChange = {e => handleChange(e)}
                     />
-                    <button type='submit' class='searchButton'>Search</button>
+                    <button type='submit' className='searchButton'>Search</button>
                 </form>
             </div>
             <div>
