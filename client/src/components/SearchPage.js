@@ -54,7 +54,12 @@ function Search(props) {
                                 return(
                                     <div><button className="hallCard">
                                         <h3>{dish.name}</h3>
-                                        <p><b>Available at: {dish.hall}</b></p>
+                                        <p><b>Available at: <Link 
+                                            to={{pathname:"/dininghall/"+ dish.hall }}
+                                            style={{ textDecoration: 'none' }}>
+                                                {dish.hall}
+                                            </Link>
+                                        </b></p>
                                         <p><b>Calories:</b> {dish.calories} kCal</p>
                                         <p>
                                             <b>Info: </b>
