@@ -15,7 +15,7 @@ function Search(props) {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (searchString = "") return;
+        if (searchString == "") return;
 
         axios.post('http://localhost:5000/dishes/getDishes', {dishName: searchString})
         .then(dishes => {
