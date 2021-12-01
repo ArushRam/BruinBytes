@@ -53,7 +53,7 @@ function App() {
           </Route>
           <Route path='/dininghall/:dininghall' element={<DiningHallInfo currUser={userData}/>} />
           <Route path='/search' element={<SearchPage currUser={userData}/>} />
-          <Route index element={<DiningHallContainer />}/>
+          <Route index element={<DiningHallContainer currUser={userData}/>}/>
           <Route /* for undefined routes */
             path="*"
             element={

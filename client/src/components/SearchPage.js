@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import '../css/SearchPage.css'
 var axios = require('axios');
 
@@ -87,11 +88,17 @@ function Search(props) {
                 <div>
                     {halls.map(hall => {
                         return(
-                            <div><button className='hallCard'>
-                                <h4>{hall.name}</h4>
-                                <p>Rating: {Number.parseFloat(hall.rating).toFixed(1)}/5.0</p>
-                                <p>At {Math.round(hall.population/hall.capacity * 100)}% capacity</p>
-                            </button></div>
+                            <div>
+                                <Link to={{
+                                    pathname:"/dininghall/"+hall.name,
+                                }}>
+                                <button className='hallCard'>
+                                    <h4>{hall.name}</h4>
+                                    <p>Rating: {Number.parseFloat(hall.rating).toFixed(1)}/5.0</p>
+                                    <p>At {Math.round(hall.population/hall.capacity * 100)}% capacity</p>
+                                </button>
+                                </Link >
+                            </div>
                         )}
                     )}
                 </div>
