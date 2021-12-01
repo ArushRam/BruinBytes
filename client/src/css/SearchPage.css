@@ -1,14 +1,15 @@
 .searchpage {
     font-family: 'VT323', monospace;
     background-repeat: no-repeat;
-      background-color: white;
-      background-position: center bottom;
-      background-attachment: fixed;
-      margin-top: 100px;
-      border-radius: 20px;
+    background-color: white;
+    background-position: center bottom;
+    background-attachment: fixed;
+    margin-top: 100px;
+    border-radius: 20px;
 }
 
 .searchButton {
+    font-family: 'VT323', monospace;
     background-color: rgb(238, 162, 20);
     color: white;
     border-color: rgb(188, 221, 40);
@@ -18,6 +19,10 @@
     border-radius: 10px;
 }
 
+.searchBox {
+    font-family: 'VT323', monospace;
+    margin-bottom: 5px;
+}
 .hallCard {
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);

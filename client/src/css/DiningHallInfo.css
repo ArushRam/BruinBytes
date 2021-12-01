@@ -1,9 +1,11 @@
 .MenuItem {
+    font-family: 'VT323', monospace;
     list-style-type: none;
     color: #1e4b87;
 }
 
 .ItemDescription {
+    font-family: 'VT323', monospace;
     z-index: 10;
     position: relative;
     display: inline-block;
@@ -11,9 +13,11 @@
     background-color: blue;
     padding: 15px;
     color: white;
+     
 }
 
 .Comment {
+    font-family: 'VT323', monospace;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -25,6 +29,13 @@
 .Toprow {
     display: flex;
     flex-direction: row;
+    font-family: 'VT323', monospace;
+    background-repeat: no-repeat;
+	background-color: white;
+	background-position: center bottom;
+	background-attachment: fixed;
+	margin-top: 100px;
+	border-radius: 20px
 }
 
 p {
@@ -41,23 +52,34 @@ h3 {
 }
 
 .Selectors {
-    margin: 5px
+    margin: 5px;
+    font-family: 'VT323', monospace;
 }
 
 .button3{
     display: inline-block;
     padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
     border-radius:2em;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     font-weight:300;
     color:#FFFFFF;
-    background-color:#4eb5f1;
+    background-color:rgb(238, 162, 20);
     text-align:center;
     transition: all 0.2s;
+    font-family: 'VT323', monospace;
+    background-repeat: no-repeat;
+	background-position: center bottom;
+	background-attachment: fixed;
+	margin-top: 50px;
+    margin-bottom: 25px;
+	border-radius: 20px;
+    border-color: rgb(188, 221, 40)
+
+
+
 }
 .button3:hover{
-    background-color:#4095c6;
+    background-color:rgb(243, 186, 79);
 }
