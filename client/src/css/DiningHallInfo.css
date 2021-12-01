@@ -1,6 +1,6 @@
 .MenuItem {
     list-style-type: none;
-    color: #1e4b87
+    color: #1e4b87;
 }
 
 .ItemDescription {
@@ -18,7 +18,6 @@
     flex-direction: column;
     justify-content: left;
     text-align: left;
-
     border: solid;
     border-width: 1px;
 }
