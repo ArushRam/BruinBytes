@@ -9,6 +9,7 @@ function MenuItem(props) {
   const calories = props.calories
   const tags = props.tags
   const [showingPopUp, setShowingPopUp] = useState(false)
+
   return (
     <li className = "MenuItem">
       <h2
@@ -79,7 +80,7 @@ function Menu(props) {
       }
       setDishes(filtered)
   }
- 
+
   if (dishes !== "undefined") {
     return (
       <div>
@@ -102,7 +103,7 @@ function Menu(props) {
         </label>
         
         {dishes.map(dish => (
-          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
+          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories} tags={dish.tags}/>
         ))}
       </div>
     )
@@ -113,12 +114,12 @@ function Menu(props) {
         <form>
           <label>
             Filter By: 
-            <input className="Selectors" type="checkbox" checked={filters[0]} onChange={() => handleOnChange(0)}/>Dairy
+            <input className="Selectors" type="checkbox" value={filters[0]} checked={filters[0]} onChange={() => handleOnChange(0)}/>Dairy
             <input className="Selectors" type="checkbox" checked={filters[1]} onChange={() => handleOnChange(1)}/>Vegan
             <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten
           </label>
         </form>
-
+        <div>Or</div>
         <label>Sort By:
           <select className="Selectors" onChange={e => setSortType(e.target.value)}>
             <option value="alpha-asc">Alphabetical (A-Z)</option>
@@ -127,6 +128,7 @@ function Menu(props) {
             <option value="cal-desc">Calories (descending)</option>
           </select>
         </label>
+        
         {data.map(dish => (
           <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories} tags={dish.tags}/>
         ))}
