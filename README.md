@@ -8,7 +8,7 @@
 
 2. Clone this project using `git clone https://github.com/ArushRam/35L-project.git`
 
-3. Install the required dependencies with `npm install`
+3. Install the required dependencies with `npm install` inside both the 'api' and 'client' folder
 
 4. Run `npm start` in both the 'api' and 'client' folder
 
