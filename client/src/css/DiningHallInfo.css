@@ -59,7 +59,7 @@ h3 {
 .button3{
     display: inline-block;
     padding:0.3em 1.2em;
-    border-radius:2em;
+    font-size: large;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;

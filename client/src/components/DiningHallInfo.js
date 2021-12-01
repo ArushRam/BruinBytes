@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useLocation } from "react-router-dom";
 //import { baseModelName } from '../../../api/models/diningHall.model';
+import '../css/DiningHallInfo.css'
 import '../css/SearchPage.css'
 import '../css/DiningHallInfo.css'
 var axios = require('axios');
@@ -234,7 +235,7 @@ function DiningHallInfo(props) {
       {checkedIn && 
         <button className="button3" disable={checkedIn} onClick={checkOut}>Check Out</button>
       }
-
+      <h1>Today's Menu</h1>
       <Menu data={menuData}/>
       <h1>Reviews</h1>
       {dataToComment}
