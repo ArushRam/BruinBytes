@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useLocation } from "react-router-dom";
 //import { baseModelName } from '../../../api/models/diningHall.model';
 import '../css/DiningHallInfo.css'
-import '../css/SearchPage.css'
 var axios = require('axios');
 
 // Functional component representing a menu item (dish) 
@@ -11,6 +10,7 @@ function MenuItem(props) {
   const calories = props.calories
   const rating = props.rating
   const desc = props.desc
+  const tags = props.tags
   const [showingPopUp, setShowingPopUp] = useState(false)
   return (
     <li className = "MenuItem">
@@ -24,6 +24,7 @@ function MenuItem(props) {
         <div className  ="ItemDescription" >
           <h3>"<i>{desc}</i>"</h3>
           <h3>Calories: {calories}</h3>
+          <h3>Tags: {tags}</h3>
         </div>
       )}
     </li>
@@ -35,9 +36,12 @@ function Menu(props) {
   for (let i = 0; i < props.data.length; i++) {
     data.push(props.data[i])
   }
+
   const [dishes, setDishes] = useState(data)
-  console.log(dishes)
   const [sortType, setSortType] = useState("alpha-asc")
+  const [filters, setFilters] = useState(
+    new Array(false, false, false)
+  )
   useEffect(() => {
     const sortArray = type => {
       const sorted = [...data].sort((a, b) => {
@@ -57,13 +61,47 @@ function Menu(props) {
       });
       setDishes(sorted);
     };
-    sortArray(sortType);
-    
+    sortArray(sortType);  
   }, [sortType]);
+
+  useEffect(()=> {
+    
+  }, [filters])
+
+  const handleOnChange = (i) => {
+    const updatedFilters = filters.map((item, index) =>
+      index === i ? !item : item
+    );
+    setFilters(updatedFilters)
+
+    
+    if ((updatedFilters[0] || updatedFilters[1] || updatedFilters[2]) === true) {
+      var filteredDishes = []
+      var temp = Array();
+      for (let i = 0; i < data.length; i++) {
+        temp.push(data[i])
+      }
+      // console.log(temp)
+      // for (let i = 0; i < temp.length; i++) {
+      //   if temp[i].tags.
+      // }
+    }
+    
+  }
 
   if (dishes.length > 0) {
     return (
       <div>
+        <form>
+          <label>
+            Filter By: 
+            <input className="Selectors" type="checkbox" value={filters[0]} checked={filters[0]} onChange={() => handleOnChange(0)}/>Dairy
+            <input className="Selectors" type="checkbox" checked={filters[1]} onChange={() => handleOnChange(1)}/>Vegan
+            <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten-Free
+          </label>
+        </form>
+        
+
         <label>Sort By:
           <select className="Selectors" onChange={e => setSortType(e.target.value)}>
             <option value="alpha-asc">Alphabetical (A-Z)</option>
@@ -72,6 +110,7 @@ function Menu(props) {
             <option value="cal-desc">Calories (descending)</option>
           </select>
         </label>
+        
         {dishes.map(dish => (
           <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
         ))}
@@ -81,6 +120,16 @@ function Menu(props) {
   else {
     return (
       <div>
+        <form>
+          <label>
+            Filter By: 
+            <input className="Selectors" type="checkbox" checked={filters[0]} onChange={() => handleOnChange(0)}/>Dairy
+            <input className="Selectors" type="checkbox" checked={filters[1]} onChange={() => handleOnChange(1)}/>Vegan
+            <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten-Free
+          {/* <button type="submit">Apply Filter</button> */}
+          </label>
+        </form>
+
         <label>Sort By:
           <select className="Selectors" onChange={e => setSortType(e.target.value)}>
             <option value="alpha-asc">Alphabetical (A-Z)</option>
@@ -90,7 +139,7 @@ function Menu(props) {
           </select>
         </label>
         {data.map(dish => (
-          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories}/>
+          <MenuItem  key={dish.dishName} dishName={dish.dishName} desc="SAMPLE TEXT" calories={dish.calories} tags={dish.tags}/>
         ))}
       </div>
     )
@@ -127,7 +176,6 @@ function DiningHallInfo(props) {
   })
 
   const [menuData, setMenuData] = useState({});
-  
 
   const getDiningHallData = async () => {
     const response = await fetch(reviewEndpoint);
