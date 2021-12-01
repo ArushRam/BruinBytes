@@ -47,8 +47,7 @@ function Search(props) {
                 </form>
             </div>
             <div>
-                <br/><h4>{message}</h4>
-                <br/>
+                <h4>{message}</h4>
                 <div>
                     {results.length != 0 &&
                             results.map(dish => {
