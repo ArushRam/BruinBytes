@@ -15,11 +15,11 @@ function Search(props) {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (searchString == "") return;
+        if (searchString === "") return;
 
         axios.post('http://localhost:5000/dishes/getDishes', {dishName: searchString})
         .then(dishes => {
-            if (dishes.data.length == 0) {
+            if (dishes.data.length === 0) {
                 setMessage(searchString + " is not being served today")
             }
             else {
@@ -51,7 +51,7 @@ function Search(props) {
             <div>
                 <h4>{message}</h4>
                 <div>
-                    {results.length != 0 &&
+                    {results.length !== 0 &&
                             results.map(dish => {
                                 return(
                                     <div><button className="hallCard">
@@ -69,7 +69,7 @@ function Search(props) {
                                                 return(
                                                     <span><i>
                                                         {tag}
-                                                        {index != dish.tags.length - 1 && <span>, </span>}
+                                                        {index !== dish.tags.length - 1 && <span>, </span>}
                                                     </i></span>
                                                 )
                                             })}

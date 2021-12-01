@@ -11,7 +11,7 @@ function Review(props) {
     {
       dininghall: "De Neve",
       review: "",
-      rating: "",
+      rating: "5",
       username: null,
       currTime: "00:00 PM"
     }
@@ -33,11 +33,12 @@ function Review(props) {
     e.preventDefault();
     const currTime = getLocalTime();
     // send POST request to the backend
+    console.log(userInput);
     axios.post('/dininghall/addReview', {
       hallName: userInput.dininghall,
       review: userInput.review,
       currTime: currTime,
-      rating: userInput.rating,
+      rating: parseInt(userInput.rating),
       username: props.currUser
     })
     .then(response => {
@@ -74,7 +75,7 @@ function Review(props) {
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
           required
         >
-          <option value="De Neve" selected>De Neve</option>
+          <option value="De Neve">De Neve</option>
           <option value="BPlate">Bruin Plate</option>
           <option value="Epicuria">Epicuria</option>
           <option value="The Study">The Study</option>
@@ -91,7 +92,7 @@ function Review(props) {
           onChange={e => setUserInput({...userInput, rating: e.target.value})}
           required
         >
-          <option value="1" selected>1</option>
+          <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -105,7 +106,7 @@ function Review(props) {
           placeholder="Enter your review here."
         />
         {errorMsg}
-        <input type='submit' class='reviewButton'/>
+        <input type='submit' className='reviewButton'/>
       </form>
     </div>
   );
