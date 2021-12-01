@@ -234,7 +234,7 @@ function DiningHallInfo(props) {
       {checkedIn && 
         <button className="button3" disable={checkedIn} onClick={checkOut}>Check Out</button>
       }
-
+      <h1>Today's Menu</h1>
       <Menu data={menuData}/>
       <h1>Reviews</h1>
       {dataToComment}
