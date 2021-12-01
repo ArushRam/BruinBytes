@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useLocation } from "react-router-dom";
-//import { baseModelName } from '../../../api/models/diningHall.model';
 import '../css/DiningHallInfo.css'
 var axios = require('axios');
 
@@ -8,8 +7,6 @@ var axios = require('axios');
 function MenuItem(props) {
   const dishName = props.dishName
   const calories = props.calories
-  const rating = props.rating
-  const desc = props.desc
   const tags = props.tags
   const [showingPopUp, setShowingPopUp] = useState(false)
   return (
@@ -22,9 +19,8 @@ function MenuItem(props) {
       </h2>
       {showingPopUp && (
         <div className  ="ItemDescription" >
-          <h3>"<i>{desc}</i>"</h3>
           <h3>Calories: {calories}</h3>
-          <h3>Tags: {tags}</h3>
+          <h3>Tags: {tags.join()}</h3>
         </div>
       )}
     </li>
@@ -32,64 +28,59 @@ function MenuItem(props) {
 }
 
 function Menu(props) {
-  var data = []
-  for (let i = 0; i < props.data.length; i++) {
-    data.push(props.data[i])
-  }
-
-  const [dishes, setDishes] = useState(data)
+  var data = Object.values(props.data)
+  data.sort((a, b) => (a.dishName > b.dishName) ? 1 : -1)
+  const [dishes, setDishes] = useState("undefined")
   const [sortType, setSortType] = useState("alpha-asc")
   const [filters, setFilters] = useState(
     new Array(false, false, false)
   )
+  
   useEffect(() => {
     const sortArray = type => {
-      const sorted = [...data].sort((a, b) => {
+      data.sort((a, b) => {
         switch(type) {
           case "alpha-asc":
             return (a.dishName > b.dishName) ? 1 : -1
-
           case "alpha-desc":
             return (a.dishName < b.dishName) ? 1 : -1
-
           case "cal-asc":
             return (a.calories > b.calories) ? 1 : -1
-
           case "cal-desc":
             return (a.calories < b.calories) ? 1 : -1
         }
       });
-      setDishes(sorted);
+      const sorted = data
+      if (sorted.length > 0)
+        setDishes(sorted);
     };
-    sortArray(sortType);  
+    sortArray(sortType);
+    setFilters([false, false, false])  
   }, [sortType]);
-
-  useEffect(()=> {
-    
-  }, [filters])
 
   const handleOnChange = (i) => {
     const updatedFilters = filters.map((item, index) =>
       index === i ? !item : item
     );
     setFilters(updatedFilters)
-
-    
-    if ((updatedFilters[0] || updatedFilters[1] || updatedFilters[2]) === true) {
-      var filteredDishes = []
-      var temp = Array();
-      for (let i = 0; i < data.length; i++) {
-        temp.push(data[i])
-      }
-      // console.log(temp)
-      // for (let i = 0; i < temp.length; i++) {
-      //   if temp[i].tags.
-      // }
+    if ((updatedFilters[0] || updatedFilters[1] || updatedFilters[2]) === false) {
+      setDishes(data)
+      return
     }
-    
+      const filtered = new Array()
+      for (let i = 0; i < data.length; i++) {
+        if (updatedFilters[0] && !data[i].tags.includes("dairy"))
+          continue;
+        if (updatedFilters[1] && !data[i].tags.includes("vegan"))
+          continue;
+        if (updatedFilters[2] && !data[i].tags.includes("gluten"))
+          continue;
+        filtered.push(data[i])
+      }
+      setDishes(filtered)
   }
-
-  if (dishes.length > 0) {
+ 
+  if (dishes !== "undefined") {
     return (
       <div>
         <form>
@@ -97,11 +88,10 @@ function Menu(props) {
             Filter By: 
             <input className="Selectors" type="checkbox" value={filters[0]} checked={filters[0]} onChange={() => handleOnChange(0)}/>Dairy
             <input className="Selectors" type="checkbox" checked={filters[1]} onChange={() => handleOnChange(1)}/>Vegan
-            <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten-Free
+            <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten
           </label>
         </form>
-        
-
+        <div>Or</div>
         <label>Sort By:
           <select className="Selectors" onChange={e => setSortType(e.target.value)}>
             <option value="alpha-asc">Alphabetical (A-Z)</option>
@@ -125,8 +115,7 @@ function Menu(props) {
             Filter By: 
             <input className="Selectors" type="checkbox" checked={filters[0]} onChange={() => handleOnChange(0)}/>Dairy
             <input className="Selectors" type="checkbox" checked={filters[1]} onChange={() => handleOnChange(1)}/>Vegan
-            <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten-Free
-          {/* <button type="submit">Apply Filter</button> */}
+            <input className="Selectors" type="checkbox" checked={filters[2]} onChange={() => handleOnChange(2)}/>Gluten
           </label>
         </form>
 
@@ -271,7 +260,6 @@ function DiningHallInfo(props) {
     });
     
   }
-
   return(
     <div className="dininghallinfo">
       <h1> {diningHallData.name} Menu for {today.toLocaleDateString()} </h1>
@@ -287,8 +275,8 @@ function DiningHallInfo(props) {
       <h1>Reviews</h1>
       {dataToComment}
     </div>
-    
   )
+  
 }
 
 export default DiningHallInfo;
