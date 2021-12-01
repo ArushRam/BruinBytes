@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import '../css/DiningHallInfo.css'
+import '../css/SearchPage.css'
 var axios = require('axios');
 
 function searchCard(props) {
@@ -54,7 +54,7 @@ function Search(props) {
 
     return (
         <div>
-            <div>
+            <div className="searchpage">
                 <h2>Search for a dish!</h2>
                 <form onSubmit={e => handleSubmit(e)}>
                     <label htmlFor="header-search">
@@ -63,10 +63,10 @@ function Search(props) {
                     <input
                         type = "text"
                         id = "header-search"
-                        placeholder = "Enter dish name"
+                        placeholder = "Enter dish name."
                         onChange = {e => handleChange(e)}
                     />
-                    <button type='submit'>Search</button>
+                    <button type="submit" className="searchButton">Search</button>
                 </form>
             </div>
             <div>
