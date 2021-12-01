@@ -17,6 +17,13 @@
     margin-bottom: 20px;
     box-shadow: 6px 7px black;
 }
+.reviewshown {
+    background: white;
+}
+
+.reviewfont {
+  font-family: 'VT323', monospace;
+}
 
 form {
   align-items: center;

@@ -30,18 +30,19 @@ function MenuBar(props) {
   }
   return (
     <div className="menubar">
-      <h2 className="title"> Menu Bar </h2>
+      <h2 className="title"> Bruin Bytes </h2>
       <nav>
         <ul>
-          <Link to="/home">Home</Link> | {" "}
+          <Link to="/home">Home</Link>  {" "}
           {!props.currUser &&  // if user is logged in, no need to login/signup
             <Link to="/login">Login</Link> 
-          } | {" "}
+          }  {" "} 
           {!props.currUser && 
             <Link to="/signup">Sign Up</Link>
-          } | {" "}
-          {reviewLink} | {" "} 
+          }  {" "} 
+          {reviewLink}  {" "}
           {<Link to ="/search">Search Dishes</Link>}
+             {" "}
           {props.currUser && 
             <button className="linkLookalike" onClick={useForceUpdate}>Logout</button>
           } 

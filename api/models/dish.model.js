@@ -6,7 +6,7 @@ const dishSchema = new Schema ({
         type: String,
         required: true
     },
-    halls: [{type: Schema.Types.ObjectID, ref: 'DiningHall'}],
+    hall: {type: String, required: true},
     calories: {type: Number, immutable: true},
     tags: {type: [String], immutable: true}
 });
