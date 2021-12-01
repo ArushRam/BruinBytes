@@ -228,10 +228,10 @@ function DiningHallInfo(props) {
       
       <div>{errorMsg}</div>
       {!checkedIn && 
-        <button className="Selectors" disable={!checkedIn} onClick={checkIn}>Check In</button>
+        <button className="button3" disable={!checkedIn} onClick={checkIn}>Check In</button>
       }  
       {checkedIn && 
-        <button className="Selectors" disable={checkedIn} onClick={checkOut}>Check Out</button>
+        <button className="button3" disable={checkedIn} onClick={checkOut}>Check Out</button>
       }
 
       <Menu data={menuData}/>
