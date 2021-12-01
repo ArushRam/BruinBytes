@@ -42,7 +42,7 @@ function Search(props) {
                         type = "text"
                         id = "header-search"
                         className = "searchBox"
-                        placeholder = "Enter dish name"
+                        placeholder = "Enter dish name."
                         onChange = {e => handleChange(e)}
                     />
                     <button type='submit' class='searchButton'>Search</button>
