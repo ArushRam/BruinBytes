@@ -21,6 +21,26 @@ router.post('/getDishInfo', (req, res) => {
         .catch(err => res.status(400).json("query error"))
 });
 
+router.post('/getDishes', async (req, res) => {
+    const searchString = req.body.dishName.toLowerCase();
+    var dishes = []
+    await dishModel.find()
+        .then(result => {
+            result.map(dish => {
+                if (dish.name.toLowerCase().includes(searchString)) {
+                    dishes.push(dish)
+                }
+                else {
+                    console.log(dish.name.toLowerCase());
+                }
+            })
+        })
+        .catch(err => res.status(400).json(err));
+    console.log(dishes);
+    res.json(dishes);
+})
+
+/*
 router.post('/getHalls', (req, res) => {
     const dishName = req.body.dishName;
     dishModel.findOne({name: dishName})
@@ -38,7 +58,7 @@ router.post('/getHalls', (req, res) => {
                             }
                         })
                         .catch((err) => {
-                            return res.status(400).json("query error")
+                            return res.status(400).send("query error")
                         });
                     halls.push(hall);
                 }
@@ -48,6 +68,6 @@ router.post('/getHalls', (req, res) => {
         .catch(err => {
             res.status(400).json(err);
         })
-})
+})*/
 
 module.exports = router;
