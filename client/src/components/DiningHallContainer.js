@@ -31,13 +31,15 @@ function DiningHall(props) {
     <div className="dininghall" onClick={() => console.log("Click!")}>
       <Link to={{
         pathname:"/dininghall/"+props.name,
-        }}>
+        }}
+        style = {{  textDecoration: 'none' }}
+        >
 
       <img src={props.image} alt={props.name}/>
       <h1>{props.name}</h1>
       <h3>At {props.crowdPercent}% capacity</h3>
       <h3>Today's rating: {props.rating}/5</h3>
-      <button >View Menu</button>
+      <br /><button >View Menu</button>
       </Link>
     </div>
   );
@@ -70,7 +72,7 @@ function DiningHallContainer(props) {
     return (
       <DiningHall
         name={e.name}
-        crowdPercent={Math.round(e.population/e.capacity * 100)}
+        crowdPercent={Math.round((e.population/e.capacity) * 100)}
         rating={Number.parseFloat(e.rating).toFixed(1)}
         image={diningHallInfo[e.name]}
         currUser={props.currUser}
