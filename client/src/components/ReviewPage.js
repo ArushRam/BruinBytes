@@ -69,6 +69,7 @@ function Review(props) {
       <form onSubmit={e => handleSubmit(e)} >
         <h3>Dining Hall</h3>
         <select 
+          className="reviewfont"
           placeholder = "choose dining hall"
           onChange={e => setUserInput({...userInput, dininghall: e.target.value})}
           required
@@ -85,6 +86,7 @@ function Review(props) {
         {/* Changed this to be a drop-down instead of text*/}
         <h3>Rating</h3>
         <select
+          className="reviewfont"
           value={userInput.rating}
           onChange={e => setUserInput({...userInput, rating: e.target.value})}
           required

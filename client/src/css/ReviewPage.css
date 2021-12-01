@@ -18,6 +18,10 @@
     box-shadow: 6px 7px black;
 }
 
+.reviewfont {
+  font-family: 'VT323', monospace;
+}
+
 form {
   align-items: center;
   display: flex;

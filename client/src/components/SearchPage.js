@@ -40,10 +40,12 @@ function Search(props) {
                 <form onSubmit={e => handleSubmit(e)}>
                     <input
                         type = "text"
-                        placeholder = "Enter dish name"
+                        id = "header-search"
+                        className = "searchBox"
+                        placeholder = "Enter dish name."
                         onChange = {e => handleChange(e)}
                     />
-                    <button type='submit' className='searchButton'>Search</button>
+                    <button type='submit' class='searchButton'>Search</button>
                 </form>
             </div>
             <div>
