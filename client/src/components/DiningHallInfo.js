@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 //import { baseModelName } from '../../../api/models/diningHall.model';
 import '../css/DiningHallInfo.css'
 import '../css/SearchPage.css'
-import '../css/DiningHallInfo.css'
 var axios = require('axios');
 
 // Functional component representing a menu item (dish) 
@@ -109,6 +108,7 @@ function Review(props) {
       <h4>Rating: {props.rating}</h4>
       <p>{props.content}</p>
     </div>
+    
   );
 }
 
@@ -146,7 +146,7 @@ function DiningHallInfo(props) {
 
   const dataToComment = Array.from(review).map((e) => {
     return(
-      <Review 
+      <Review
         username={e.username}
         rating={e.rating}
         time={e.time}
@@ -227,7 +227,6 @@ function DiningHallInfo(props) {
   return(
     <div className="dininghallinfo">
       <h1> {diningHallData.name} Menu for {today.toLocaleDateString()} </h1>
-      
       <div>{errorMsg}</div>
       {!checkedIn && 
         <button className="button3" disable={!checkedIn} onClick={checkIn}>Check In</button>
@@ -240,6 +239,7 @@ function DiningHallInfo(props) {
       <h1>Reviews</h1>
       {dataToComment}
     </div>
+    
   )
 }
 

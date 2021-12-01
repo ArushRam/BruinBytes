@@ -2,6 +2,7 @@
     font-family: 'VT323', monospace;
     list-style-type: none;
     color: #1e4b87;
+    font-family: 'VT323', monospace;
 }
 
 .ItemDescription {
@@ -22,8 +23,9 @@
     flex-direction: column;
     justify-content: left;
     text-align: left;
-    border: solid;
+    border: 1px solid black;
     border-width: 1px;
+    padding-left: 15px;
 }
 
 .Toprow {
@@ -34,7 +36,6 @@
 	background-color: white;
 	background-position: center bottom;
 	background-attachment: fixed;
-	margin-top: 100px;
 	border-radius: 20px
 }
 
@@ -62,12 +63,11 @@ h3 {
     font-size: large;
     box-sizing: border-box;
     text-decoration:none;
-    font-family:'Roboto',sans-serif;
     font-weight:300;
     color:#FFFFFF;
     background-color:rgb(238, 162, 20);
     text-align:center;
-    transition: all 0.2s;
+    transition: all 0.1s;
     font-family: 'VT323', monospace;
     background-repeat: no-repeat;
 	background-position: center bottom;
@@ -82,4 +82,8 @@ h3 {
 }
 .button3:hover{
     background-color:rgb(243, 186, 79);
+}
+
+.dininghallinfo {
+    font-family: 'VT323', monospace;
 }
