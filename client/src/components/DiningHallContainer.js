@@ -26,14 +26,11 @@ const diningHallInfo = {
 };
 
 function DiningHall(props) {
-  //  function that returns a generic dining hall using info from props
-  const data = {"name" : props.name, "capacity": props.capacity, "rating":props.rating};
   
   return (
     <div className="dininghall" onClick={() => console.log("Click!")}>
       <Link to={{
         pathname:"/dininghall/"+props.name,
-        state: {data}
         }}>
 
       <img src={props.image} alt={props.name}/>
@@ -76,6 +73,7 @@ function DiningHallContainer(props) {
         crowdPercent={Math.round(e.population/e.capacity * 100)}
         rating={Number.parseFloat(e.rating).toFixed(1)}
         image={diningHallInfo[e.name]}
+        currUser={props.currUser}
       />
     );
   });
