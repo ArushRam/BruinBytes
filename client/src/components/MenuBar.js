@@ -30,7 +30,7 @@ function MenuBar(props) {
   }
   return (
     <div className="menubar">
-      <h2 className="title"> Menu Bar </h2>
+      <h2 className="title"> Bruin Bytes </h2>
       <nav>
         <ul>
           <Link to="/home">Home</Link>  {" "}

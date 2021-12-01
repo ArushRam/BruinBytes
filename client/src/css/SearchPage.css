@@ -3,12 +3,12 @@
   flex-direction: row;
 }
 .searchpage {
-    font-family: 'VT323', monospace;
-    background-repeat: no-repeat;
+      font-family: 'VT323', monospace;
+      background-repeat: no-repeat;
       background-color: white;
       background-position: center bottom;
       background-attachment: fixed;
-      margin-top: 50px;
+      margin-top: 125px;
       border-radius: 20px;
     
 }
