@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useLocation } from "react-router-dom";
 //import { baseModelName } from '../../../api/models/diningHall.model';
+import '../css/DiningHallInfo.css'
 import '../css/SearchPage.css'
 var axios = require('axios');
 
