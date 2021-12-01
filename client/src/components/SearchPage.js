@@ -55,11 +55,7 @@ function Search(props) {
                         placeholder = "Enter dish name."
                         onChange = {e => handleChange(e)}
                     />
-<<<<<<< HEAD
                     <button type="submit" className="searchButton">Search</button>
-=======
-                    <button type='submit' class='searchButton'>Search</button>
->>>>>>> a3a83f23a201a21db77f9313c54e84e3dd1c2d62
                 </form>
             </div>
             <div>
