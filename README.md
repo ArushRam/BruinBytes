@@ -1,6 +1,6 @@
-# 35L-project
+# Bruin Bytes
 
-35L-project is a web app that tracks the status of your favorite UCLA dining halls. With 35L-project, you can track line status, view menus and reviews, and even locate where your favorite dish is being served. 
+Bruin Bytes is a web app that tracks the status of your favorite UCLA dining halls. With Bruin Bytes, you can track line status, view menus and reviews, and even locate where your favorite dish is being served. 
 
 ## Building from source
 
