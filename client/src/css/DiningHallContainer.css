@@ -28,3 +28,15 @@ img {
   height: auto;
 }
 
+.favorite {
+  background: rgb(255, 255, 255);
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: rgb(1, 114, 10);
+	border: 2px solid rgb(255, 255, 255);    
+	height: 25px;
+	width: 200px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+

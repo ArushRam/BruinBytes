@@ -26,7 +26,8 @@ const diningHallInfo = {
 };
 
 function DiningHall(props) {
-  
+
+  //console.log(props.isFavFoodinHall)
   return (
     <div className="dininghall" onClick={() => console.log("Click!")}>
       <Link to={{
@@ -39,6 +40,7 @@ function DiningHall(props) {
       <h1>{props.name}</h1>
       <h3>At {props.crowdPercent}% capacity</h3>
       <h3>Today's rating: {props.rating}/5</h3>
+      <button className="favorite">{props.isFavFoodinHall}</button>
       <br /><button >View Menu</button>
       </Link>
     </div>
@@ -54,8 +56,26 @@ function DiningHallContainer(props) {
     []
   );
 
+  const [favFood, setFavFood] = useState("");
+  const [favHalls, setFavHalls] = useState([]);
 
   const getDiningHallData = () => {
+
+    if (props.currUser) {
+      axios.get("/users/" + props.currUser).then(response => {
+        setFavFood(response.data.favoriteDish);
+      
+        if (response.data.favoriteDish != "") {
+          
+          axios.post("/dishes/getHalls", {dishName: response.data.favoriteDish})
+          .then(halls => {
+            setFavHalls(halls.data);
+          })
+        }
+        }
+      )
+    }
+
     axios.get(endpoint).then(diningHalls => {
       setDiningHallData(diningHalls.data);
     });
@@ -69,6 +89,13 @@ function DiningHallContainer(props) {
   
   // mapping function: maps array of dining hall info to dining hall component
   const infoToComponent = Array.from(dininghallData).map((e) => {
+
+    let isFavFoodinHall = "";
+    
+    if (favHalls.includes(e.name)) {
+      isFavFoodinHall = favFood + " available";
+    }
+
     return (
       <DiningHall
         name={e.name}
@@ -76,6 +103,7 @@ function DiningHallContainer(props) {
         rating={Number.parseFloat(e.rating).toFixed(1)}
         image={diningHallInfo[e.name]}
         currUser={props.currUser}
+        isFavFoodinHall={isFavFoodinHall}
       />
     );
   });
