@@ -40,6 +40,24 @@ router.post('/getDishes', async (req, res) => {
     res.json(dishes);
 })
 
+router.post('/getHalls', async (req, res) => {
+    const searchString = req.body.dishName.toLowerCase();
+    var halls = []
+    await dishModel.find()
+        .then(result => {
+            result.map(dish => {
+                if (dish.name.toLowerCase().includes(searchString)) {
+                    if (!(halls.includes(dish.hall))) {
+                        halls.push(dish.hall)
+                    }
+                }
+            })
+        })
+        .catch(err => res.status(400).json(err));
+    console.log(halls);
+    res.json(halls);
+})
+
 /*
 router.post('/getHalls', (req, res) => {
     const dishName = req.body.dishName;

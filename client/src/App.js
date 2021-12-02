@@ -42,7 +42,7 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<Home currUser={userData} setUser={setUserData} />}>
-          <Route path='/home' element={<DiningHallContainer />} />
+          <Route path='/home' element={<DiningHallContainer currUser={userData} /> } />
           <Route path='/login' element={<PublicRoute currUser={userData} />} >
             <Route path='/login' element={<LoginPage currUser={userData} setUser={setUserData} />} />  
           </Route>    
