@@ -27,7 +27,7 @@ router.post('/getDishes', async (req, res) => {
     await dishModel.find()
         .then(result => {
             result.map(dish => {
-                if (dish.name.toLowerCase().includes(searchString)) {
+                if (dish.name.toLowerCase().split(" ").includes(searchString)) {
                     dishes.push(dish)
                 }
                 else {
@@ -46,7 +46,7 @@ router.post('/getHalls', async (req, res) => {
     await dishModel.find()
         .then(result => {
             result.map(dish => {
-                if (dish.name.toLowerCase().includes(searchString)) {
+                if (dish.name.toLowerCase().split(" ").includes(searchString)) {
                     if (!(halls.includes(dish.hall))) {
                         halls.push(dish.hall)
                     }
