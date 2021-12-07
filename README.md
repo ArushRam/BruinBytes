@@ -14,4 +14,4 @@ Bruin Bytes is a web app that tracks the status of your favorite UCLA dining hal
 
 ## Contributors
 
-Rishikesh Samant, Arush Ramteke, Alexander Hwang, Jeffrey Shen, Brooke Lim.
+Rishikesh Samant, Arush Ramteke, Alexander Hwang, Jeffrey Shen, Brooke Lim..
